@@ -49,7 +49,7 @@ const Cart: React.FC = () => {
       <div className="sticky bottom-0 left-0 right-0 border-t border-gray-200 bg-white px-4 py-6 drop-shadow-2xl sm:px-6">
         <div className="flex justify-between text-base font-medium text-gray-900">
           <p>Subtotal</p>
-          <p>${cartTotalAmount}</p>
+          <p>€{cartTotalAmount}</p>
         </div>
         <p className="mt-0.5 text-sm text-gray-500">
           Shipping and taxes calculated at checkout.
