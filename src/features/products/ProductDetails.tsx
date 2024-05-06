@@ -149,23 +149,26 @@ const ProductDetails: React.FC<props> = (props) => {
             </div>
 
             <div className="mt-6 sm:mt-8 sm:flex sm:items-center sm:gap-4">
-              <button
-                className="group flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 transition-colors duration-300 hover:bg-gray-100 hover:text-indigo-500 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100"
-                type="button"
-                onClick={() => handleToggleWishlistState(props.productDetails)}
-              >
                 {wishlistItems.find(
                   (item) => item.id === props.productDetails.id,
                 ) ? (
-                  <>
+                  <button
+                className="group flex w-full items-center justify-center gap-2 rounded-lg border border-red-500 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 transition-colors duration-300 hover:bg-gray-100 hover:text-indigo-500 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 hover:border-gray-200"
+                type="button"
+                onClick={() => handleToggleWishlistState(props.productDetails)}
+              >
                     <HiHeart
                       className="h-5 w-5 flex-shrink-0 text-red-500 md:h-5 md:w-5 lg:right-5 lg:top-5 lg:h-6 lg:w-6"
                       aria-hidden="true"
                     />
                     <span>Remove from favorites</span>
-                  </>
+                  </button>
                 ) : (
-                  <>
+                  <button
+                className="group flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 transition-colors duration-300 hover:bg-gray-100 hover:text-indigo-500 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100"
+                type="button"
+                onClick={() => handleToggleWishlistState(props.productDetails)}
+              >
                     <HiOutlineHeart
                       strokeWidth={1}
                       className="h-5 w-5 flex-shrink-0 text-gray-500 transition-colors duration-300 group-hover:text-red-500 md:h-5 md:w-5 lg:right-5 lg:top-5 lg:h-6 lg:w-6"
@@ -173,9 +176,8 @@ const ProductDetails: React.FC<props> = (props) => {
                       role="button"
                     />
                     <span>Add to favorites</span>
-                  </>
+                  </button>
                 )}
-              </button>
 
               {cartItems.find((item) => item.id === props.productDetails.id) ? (
                 <div className="mx-auto mt-4 rounded-lg px-1 py-1 font-medium text-gray-600 sm:mt-0 sm:w-[20%] lg:w-4/12">
