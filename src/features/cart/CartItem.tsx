@@ -44,7 +44,7 @@ const CartItem: React.FC<props> = (props) => {
             Price / Qty:
             <span className="font-medium text-gray-600">
               {" "}
-              ${props.cartItem.price}
+              €{props.cartItem.price}
             </span>
           </p>
         </div>
@@ -69,23 +69,5 @@ const CartItem: React.FC<props> = (props) => {
   );
 };
 
-// return (
-//   <div>
-//     <img src={props.cartItem.image} alt={props.cartItem.name} />
-//     <div>{props.cartItem.name}</div>
-//     <div>{props.cartItem.id}</div>
-//     <div>{props.cartItem.price * props.cartItem.cartQuantity}</div>
-//     <div>{props.cartItem.cartQuantity}</div>
-
-//     <button
-//       className="rounded-md bg-slate-500 p-2 text-white"
-//       type="button"
-//       onClick={() => handleRemoveItemFromCart()}
-//     >
-//       Remove from Cart
-//     </button>
-
-//   </div>
-// );
 
 export default CartItem;
