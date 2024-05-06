@@ -37,7 +37,7 @@ const CartItem: React.FC<props> = (props) => {
           <div className="flex justify-between text-base font-medium text-gray-900">
             <h3>{props.cartItem.name}</h3>
             <p className="ml-4">
-              ${props.cartItem.price * props.cartItem.cartQuantity}
+              €{props.cartItem.price * props.cartItem.cartQuantity}
             </p>
           </div>
           <p className="mt-1 text-sm text-gray-500">
