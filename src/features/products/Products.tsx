@@ -70,15 +70,15 @@ const Products: React.FC = () => {
             className="flex items-center justify-between gap-4 py-3 leading-tight"
           >
             <h3 className="text-sm font-medium text-gray-700">
-              {product.name}
-            </h3>
-
-            <p className="font-semibold text-gray-900">
-              {_.truncate(product.price_string, {
+              {_.truncate(product.name, {
                 length: 30,
                 separator: " ",
                 omission: "...”
               })}
+            </h3>
+
+            <p className="font-semibold text-gray-900">
+              {product.price_string}
             </p>
           </Link>
 
