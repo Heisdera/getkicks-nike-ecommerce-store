@@ -8,7 +8,7 @@ interface props {
   wishlistItem: {
     name: string;
     image: string;
-    path_url: string;
+    id: string;
     price_string: string;
     currency: string;
     price: number;
@@ -26,11 +26,11 @@ const WishlistItem: React.FC<props> = (props) => {
     <div className="group relative cursor-pointer rounded-xl border-[0.5px] bg-white p-2.5 md:p-2 lg:p-3">
       <Link
         className="flex aspect-[6/5] items-center justify-center rounded-md bg-[#f6f6f6]"
-        to={`/products/${props.wishlistItem.path_url}`}
+        to={`/products/${props.wishlistItem.id}`}
       >
         <img
           src={props.wishlistItem.image}
-          alt={props.wishlistItem.path_url}
+          alt={props.wishlistItem.id}
           className="pt-8 group-hover:opacity-85"
         />
       </Link>
@@ -42,7 +42,7 @@ const WishlistItem: React.FC<props> = (props) => {
       />
 
       <Link
-        to={`/products/${props.wishlistItem.path_url}`}
+        to={`/products/${props.wishlistItem.id}`}
         className="flex items-center justify-between gap-4 pt-3 leading-tight"
       >
         <h3 className="text-sm font-medium text-gray-700">

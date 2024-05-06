@@ -41,7 +41,7 @@ const QuantityControlPanel: React.FC<props> = (props) => {
         {
           cartItems[
             cartItems.findIndex(
-              (item) => item.path_url === props.product.path_url,
+              (item) => item.id === props.product.id,
             )
           ].cartQuantity
         }
