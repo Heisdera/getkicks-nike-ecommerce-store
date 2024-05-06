@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import { productsData } from "../../data/data";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCartItems, setAddItemToCart } from "../cart/CartSlice";
 import {
@@ -11,6 +10,7 @@ import { HiHeart, HiOutlineHeart } from "react-icons/hi";
 import { product } from "../../utils/types";
 import QuantityControlPanel from "../../components/QuantityControlPanel";
 import { useProducts } from "../../hooks/useProducts.ts";
+import _ from "lodash";
 
 const Products: React.FC = () => {
   const { isLoading, products, error } = useProducts();
@@ -74,7 +74,11 @@ const Products: React.FC = () => {
             </h3>
 
             <p className="font-semibold text-gray-900">
-              {product.price_string}
+              {_.truncate(product.price_string, {
+                length: 30,
+                separator: " ",
+                omission: "...”
+              })}
             </p>
           </Link>
 
