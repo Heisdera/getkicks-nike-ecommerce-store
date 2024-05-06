@@ -70,7 +70,7 @@ const Products: React.FC = () => {
             className="flex items-center justify-between gap-4 py-3 leading-tight"
           >
             <h3 className="text-sm font-medium text-gray-700">
-              {_.truncate(product.name, { length: 30, separator: " ", omission: "..." })}
+              {_.truncate(product.name, { length: 15, separator: " ", omission: "..." })}
             </h3>
 
             <p className="font-semibold text-gray-900">
