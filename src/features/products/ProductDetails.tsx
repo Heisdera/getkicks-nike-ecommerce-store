@@ -161,7 +161,7 @@ const ProductDetails: React.FC<props> = (props) => {
                       className="h-5 w-5 flex-shrink-0 text-red-500 md:h-5 md:w-5 lg:right-5 lg:top-5 lg:h-6 lg:w-6"
                       aria-hidden="true"
                     />
-                    <span>Remove from favorites</span>
+                    <span className="text-red-500 transition-colors duration-300 group-hover:text-gray-500">Remove from favorites</span>
                   </button>
                 ) : (
                   <button
@@ -252,31 +252,6 @@ const ProductDetails: React.FC<props> = (props) => {
       </div>
     </section>
   );
-
-  // return (
-  //   <div>
-  //     <div>ProductDetails {props.productId}</div>
-  //     <div>{props.productDetails.name}</div>
-  //     <div>{props.productDetails.description.color[0]}</div>
-  //     <div>{props.productDetails.price_string}</div>
-  //     <img
-  //       src={props.productDetails.images[0]}
-  //       alt={props.productDetails.name}
-  //     />
-  //     <img
-  //       src={props.productDetails.images[1]}
-  //       alt={props.productDetails.name}
-  //     />
-  //     <img
-  //       src={props.productDetails.images[2]}
-  //       alt={props.productDetails.name}
-  //     />
-  //     <div>{props.productDetails.description.desc_1}</div>
-  //     <div>{props.productDetails.description.desc_2}</div>
-  //     <div>Sku: {props.productDetails.description.desc_3.sku}</div>
-  //     <div>Release date: {props.productDetails.description.desc_3.releaseDate}</div>
-  //   </div>
-  // );
 };
 
 export default ProductDetails;
