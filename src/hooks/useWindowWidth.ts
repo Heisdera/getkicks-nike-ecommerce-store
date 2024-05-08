@@ -8,7 +8,7 @@ export function useWindowWidth() {
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      console.log(width);
+      // console.log(width);
 
       if (width >= 768 && width < 1024) {
         setIsTablet(true);
@@ -39,7 +39,7 @@ export function useWindowWidth() {
     };
   }, []);
 
-  console.log({ isMobile, isTablet, isDesktop });
+  // console.log({ isMobile, isTablet, isDesktop });
 
   return {
     isMobile,

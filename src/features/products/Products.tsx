@@ -11,9 +11,8 @@ import { product } from "../../utils/types";
 import QuantityControlPanel from "../../components/QuantityControlPanel";
 import { useProducts } from "../../hooks/useProducts.ts";
 import _ from "lodash";
-import Skeleton from "react-loading-skeleton";
 import { useWindowWidth } from "../../hooks/useWindowWidth.ts";
-// import { useMediaQuery } from "../../hooks/useMediaQuery.ts";
+import ProductsSkeleton from "./ProductsSkeleton.tsx";
 
 const Products: React.FC = () => {
   const { isMobile, isTablet, isDesktop } = useWindowWidth();
@@ -34,9 +33,7 @@ const Products: React.FC = () => {
     return _.truncate(productName, { length: length });
   }
 
-  if (isLoading)
-    // return <div className="animate-pulse text-4xl">Loading...</div>;
-    return <Skeleton />;
+  if (isLoading) return <ProductsSkeleton />;
 
   if (error)
     return <div className="bg-red-600 text-4xl">Error fetching data</div>;
