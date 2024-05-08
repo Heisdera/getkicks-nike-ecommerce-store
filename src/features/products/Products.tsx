@@ -16,7 +16,7 @@ import { useWindowWidth } from "../../hooks/useWindowWidth.ts";
 // import { useMediaQuery } from "../../hooks/useMediaQuery.ts";
 
 const Products: React.FC = () => {
-  const { isSmallScreen, isTablet, isDesktop } = useWindowWidth();
+  const { isMobile, isTablet, isDesktop } = useWindowWidth();
   const { isLoading, products, error } = useProducts();
   const dispatch = useDispatch();
   const wishlistItems = useSelector(selectWishlistItems);
@@ -46,7 +46,7 @@ const Products: React.FC = () => {
       {products.map((product: product) => (
         <div
           key={product.id}
-          className="group relative cursor-pointer rounded-xl border-[0.5px] bg-white p-2.5 md:p-2 lg:p-3"
+          className="group relative h-fit cursor-pointer rounded-xl border-[0.5px] bg-white p-2.5 md:p-2 lg:p-3"
         >
           <Link
             className="flex aspect-[6/5] items-center justify-center rounded-md bg-[#f6f6f6]"
@@ -78,17 +78,17 @@ const Products: React.FC = () => {
             to={`/products/${product.id}`}
             className="flex items-center justify-between gap-1 py-3 leading-tight sm:gap-4"
           >
-            <h3 className="text-sm font-medium text-gray-600 sm:text-base">
+            <h3 className="text-xs font-medium text-gray-600 min-[360px]:text-sm sm:text-base">
               {isDesktop
                 ? handleTruncateProductName(product.name, 18)
                 : isTablet
                   ? handleTruncateProductName(product.name, 12)
-                  : isSmallScreen
-                    ? handleTruncateProductName(product.name, 10)
-                    : handleTruncateProductName(product.name, 14)}
+                  : isMobile
+                    ? handleTruncateProductName(product.name, 16)
+                    : handleTruncateProductName(product.name, 12)}
             </h3>
 
-            <p className="text-sm font-semibold text-gray-900 sm:text-base">
+            <p className="text-xs font-semibold text-gray-900 min-[360px]:text-sm sm:text-base">
               {product.price_string}
             </p>
           </Link>
