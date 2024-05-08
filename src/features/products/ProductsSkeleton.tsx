@@ -1,6 +1,6 @@
 import React from "react";
-import { Skeleton } from "@/components/ui/skeleton";
-// import Skeleton from "react-loading-skeleton";
+// import { Skeleton } from "@/components/ui/skeleton";
+import Skeleton from "react-loading-skeleton";
 
 const ProductsSkeleton: React.FC = () => {
   // const
