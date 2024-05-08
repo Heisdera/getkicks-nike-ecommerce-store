@@ -82,7 +82,7 @@ const Products: React.FC = () => {
               {isDesktop
                 ? handleTruncateProductName(product.name, 18)
                 : isTablet
-                  ? handleTruncateProductName(product.name, 12)
+                  ? handleTruncateProductName(product.name, 14)
                   : isMobile
                     ? handleTruncateProductName(product.name, 16)
                     : handleTruncateProductName(product.name, 12)}
