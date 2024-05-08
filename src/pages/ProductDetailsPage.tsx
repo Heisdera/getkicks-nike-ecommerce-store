@@ -4,6 +4,7 @@ import ProductDetails from "../features/products/ProductDetails";
 import { Link } from "react-router-dom";
 // import { getProductDetails } from "../data/data";
 import { useProductDetails } from "../hooks/useProductDetails";
+import ProductDetailsSkeleton from "@/features/products/ProductDetailsSkeleton";
 // import { productDetails } from "../utils/types";
 
 const ProductDetailsPage: React.FC = () => {
@@ -11,7 +12,7 @@ const ProductDetailsPage: React.FC = () => {
   const { productId } = useParams();
 
   if (isLoading)
-    return <div className="animate-pulse text-4xl">Loading...</div>;
+    return <ProductDetailsSkeleton/>
 
   if (error)
     return <div className="bg-red-600 text-4xl">Error fetching data</div>;
