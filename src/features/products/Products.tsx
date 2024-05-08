@@ -11,8 +11,12 @@ import { product } from "../../utils/types";
 import QuantityControlPanel from "../../components/QuantityControlPanel";
 import { useProducts } from "../../hooks/useProducts.ts";
 import _ from "lodash";
+import Skeleton from "react-loading-skeleton";
+import { useWindowWidth } from "../../hooks/useWindowWidth.ts";
+// import { useMediaQuery } from "../../hooks/useMediaQuery.ts";
 
 const Products: React.FC = () => {
+  const { isSmallScreen, isTablet, isDesktop } = useWindowWidth();
   const { isLoading, products, error } = useProducts();
   const dispatch = useDispatch();
   const wishlistItems = useSelector(selectWishlistItems);
@@ -26,8 +30,13 @@ const Products: React.FC = () => {
     dispatch(setToggleWishlistItem(item));
   }
 
+  function handleTruncateProductName(productName: string, length: number) {
+    return _.truncate(productName, { length: length });
+  }
+
   if (isLoading)
-    return <div className="animate-pulse text-4xl">Loading...</div>;
+    // return <div className="animate-pulse text-4xl">Loading...</div>;
+    return <Skeleton />;
 
   if (error)
     return <div className="bg-red-600 text-4xl">Error fetching data</div>;
@@ -67,13 +76,19 @@ const Products: React.FC = () => {
 
           <Link
             to={`/products/${product.id}`}
-            className="flex items-center justify-between gap-4 py-3 leading-tight"
+            className="flex items-center justify-between gap-1 py-3 leading-tight sm:gap-4"
           >
-            <h3 className="text-sm font-medium text-gray-700">
-              {_.truncate(product.name, { length: 20, separator: " ", omission: "..." })}
+            <h3 className="text-sm font-medium text-gray-600 sm:text-base">
+              {isDesktop
+                ? handleTruncateProductName(product.name, 18)
+                : isTablet
+                  ? handleTruncateProductName(product.name, 12)
+                  : isSmallScreen
+                    ? handleTruncateProductName(product.name, 10)
+                    : handleTruncateProductName(product.name, 14)}
             </h3>
 
-            <p className="font-semibold text-gray-900">
+            <p className="text-sm font-semibold text-gray-900 sm:text-base">
               {product.price_string}
             </p>
           </Link>
