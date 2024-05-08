@@ -3,7 +3,7 @@ import React from "react";
 import Skeleton from "react-loading-skeleton";
 
 const ProductsSkeleton: React.FC = () => {
-  let arrayLength = 4;
+  let arrayLength = 6;
   const { isTablet, isDesktop } = useWindowWidth();
 
   if (isTablet || isDesktop) arrayLength = 8;
