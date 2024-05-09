@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, keepPreviousData } from "@tanstack/react-query";
 // import { useParams } from "react-router-dom";
 import { fetchProductsData } from "../services/fetchProductsData.ts";
 
@@ -12,6 +12,7 @@ export function useProducts() {
   const { isLoading, data, error } = useQuery({
     queryKey: ["products", currentPage],
     queryFn: () => fetchProductsData(currentPage),
+    placeholderData: keepPreviousData,
   });
 
   const totalPages = Math.ceil(data?.total_results / ITEMSPERPAGE) || 0;
