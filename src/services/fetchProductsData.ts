@@ -1,5 +1,4 @@
-const PAGE = 1;
-const url = `https://nike-sneakers-api.p.rapidapi.com/products?page=${PAGE}`;
+const BaseUrl = `https://nike-sneakers-api.p.rapidapi.com/products`;
 const options = {
   method: "GET",
   headers: {
@@ -8,13 +7,13 @@ const options = {
   },
 };
 
-export async function fetchProductsData() {
-  const response = await fetch(url, options);
-  const data = await response.json();
+export async function fetchProductsData(page: number) {
+  const response = await fetch(`${BaseUrl}?page=${page}`, options);
+  const { products, total_results } = await response.json();
 
   if (!response.ok) {
     throw new Error("Failed to fetch products data");
   }
 
-  return data.products;
+  return { products, total_results };
 }

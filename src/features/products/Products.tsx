@@ -16,7 +16,15 @@ import ProductsSkeleton from "./ProductsSkeleton.tsx";
 
 const Products: React.FC = () => {
   const { isMobile, isTablet, isDesktop } = useWindowWidth();
-  const { isLoading, products, error } = useProducts();
+  const {
+    isLoading,
+    data,
+    error,
+    currentPage,
+    totalPages,
+    goToNextPage,
+    goToPrevPage,
+  } = useProducts();
   const dispatch = useDispatch();
   const wishlistItems = useSelector(selectWishlistItems);
   const cartItems = useSelector(selectCartItems);
@@ -39,74 +47,96 @@ const Products: React.FC = () => {
     return <div className="bg-red-600 text-4xl">Error fetching data</div>;
 
   return (
-    <div className="grid grid-cols-2 gap-x-3 gap-y-6 sm:gap-x-4 md:grid-cols-4 lg:gap-x-4">
-      {products.map((product: product) => (
-        <div
-          key={product.id}
-          className="group relative h-fit cursor-pointer rounded-xl border-[0.5px] bg-white p-2.5 md:p-2 lg:p-3"
+    <>
+      <div className="mb-4 space-x-4">
+        <button
+          type="button"
+          className="text-blue-500 underline hover:bg-gray-200 disabled:cursor-not-allowed"
+          onClick={goToPrevPage}
+          disabled={currentPage === 1}
         >
-          <Link
-            className="flex aspect-[6/5] items-center justify-center rounded-md bg-[#f6f6f6]"
-            to={`/products/${product.id}`}
+          &larr; prev
+        </button>
+
+        <button
+          type="button"
+          className="text-blue-500 underline hover:bg-gray-200 disabled:cursor-not-allowed"
+          onClick={goToNextPage}
+          disabled={currentPage === totalPages}
+        >
+          next &rarr;
+        </button>
+      </div>
+
+      <div className="grid grid-cols-2 gap-x-3 gap-y-6 sm:gap-x-4 md:grid-cols-4 lg:gap-x-4">
+        {data?.products.map((product: product) => (
+          <div
+            key={product.id}
+            className="group relative h-fit cursor-pointer rounded-xl border-[0.5px] bg-white p-2.5 md:p-2 lg:p-3"
           >
-            <img
-              src={product.image}
-              alt={product.id}
-              className="pt-8 group-hover:opacity-85"
-            />
-          </Link>
-          {wishlistItems.find((item) => item.id === product.id) ? (
-            <HiHeart
-              className="absolute right-4 top-4 h-6 w-6 flex-shrink-0 text-red-500 md:h-5 md:w-5 lg:right-5 lg:top-5 lg:h-6 lg:w-6"
-              aria-hidden="true"
-              onClick={() => handleToggleWishlistState(product)}
-            />
-          ) : (
-            <HiOutlineHeart
-              strokeWidth={1}
-              className="absolute right-4 top-4 h-6 w-6 flex-shrink-0 text-gray-500 transition-colors duration-300 hover:text-red-500 md:h-5 md:w-5 lg:right-5 lg:top-5 lg:h-6 lg:w-6"
-              aria-hidden="true"
-              role="button"
-              onClick={() => handleToggleWishlistState(product)}
-            />
-          )}
-
-          <Link
-            to={`/products/${product.id}`}
-            className="flex items-center justify-between gap-1 py-3 leading-tight sm:gap-4"
-          >
-            <h3 className="text-xs font-medium text-gray-600 min-[360px]:text-sm sm:text-base">
-              {isDesktop
-                ? handleTruncateProductName(product.name, 18)
-                : isTablet
-                  ? handleTruncateProductName(product.name, 14)
-                  : isMobile
-                    ? handleTruncateProductName(product.name, 16)
-                    : handleTruncateProductName(product.name, 12)}
-            </h3>
-
-            <p className="text-xs font-semibold text-gray-900 min-[360px]:text-sm sm:text-base">
-              {product.price_string}
-            </p>
-          </Link>
-
-          {cartItems.find((item) => item.id === product.id) ? (
-            <QuantityControlPanel
-              product={product}
-              color="text-indigo-500 hover:text-indigo-600"
-            />
-          ) : (
-            <button
-              className="w-full rounded-md bg-indigo-500 p-1.5 text-sm text-white hover:bg-indigo-600"
-              type="button"
-              onClick={() => handleAddItemToCart(product)}
+            <Link
+              className="flex aspect-[6/5] items-center justify-center rounded-md bg-[#f6f6f6]"
+              to={`/products/${product.id}`}
             >
-              Add to cart
-            </button>
-          )}
-        </div>
-      ))}
-    </div>
+              <img
+                src={product.image}
+                alt={product.id}
+                className="pt-8 group-hover:opacity-85"
+              />
+            </Link>
+            {wishlistItems.find((item) => item.id === product.id) ? (
+              <HiHeart
+                className="absolute right-4 top-4 h-6 w-6 flex-shrink-0 text-red-500 md:h-5 md:w-5 lg:right-5 lg:top-5 lg:h-6 lg:w-6"
+                aria-hidden="true"
+                onClick={() => handleToggleWishlistState(product)}
+              />
+            ) : (
+              <HiOutlineHeart
+                strokeWidth={1}
+                className="absolute right-4 top-4 h-6 w-6 flex-shrink-0 text-gray-500 transition-colors duration-300 hover:text-red-500 md:h-5 md:w-5 lg:right-5 lg:top-5 lg:h-6 lg:w-6"
+                aria-hidden="true"
+                role="button"
+                onClick={() => handleToggleWishlistState(product)}
+              />
+            )}
+
+            <Link
+              to={`/products/${product.id}`}
+              className="flex items-center justify-between gap-1 py-3 leading-tight sm:gap-4"
+            >
+              <h3 className="text-xs font-medium text-gray-600 min-[360px]:text-sm sm:text-base">
+                {isDesktop
+                  ? handleTruncateProductName(product.name, 18)
+                  : isTablet
+                    ? handleTruncateProductName(product.name, 14)
+                    : isMobile
+                      ? handleTruncateProductName(product.name, 16)
+                      : handleTruncateProductName(product.name, 12)}
+              </h3>
+
+              <p className="text-xs font-semibold text-gray-900 min-[360px]:text-sm sm:text-base">
+                {product.price_string}
+              </p>
+            </Link>
+
+            {cartItems.find((item) => item.id === product.id) ? (
+              <QuantityControlPanel
+                product={product}
+                color="text-indigo-500 hover:text-indigo-600"
+              />
+            ) : (
+              <button
+                className="w-full rounded-md bg-indigo-500 p-1.5 text-sm text-white hover:bg-indigo-600"
+                type="button"
+                onClick={() => handleAddItemToCart(product)}
+              >
+                Add to cart
+              </button>
+            )}
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
 
