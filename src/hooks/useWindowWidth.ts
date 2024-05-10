@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 export function useWindowWidth() {
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
@@ -10,6 +11,13 @@ export function useWindowWidth() {
       const width = window.innerWidth;
       // console.log(width);
 
+      // Laptop
+      if (width >= 1024) {
+        setIsDesktop(true);
+        setIsTablet(false);
+      }
+
+      // Tablet
       if (width >= 768 && width < 1024) {
         setIsTablet(true);
         setIsDesktop(false);
@@ -18,15 +26,16 @@ export function useWindowWidth() {
         setIsTablet(false);
       }
 
+      // Mobile
       if (width >= 375 && width < 768) {
         setIsMobile(true);
         setIsTablet(false);
         setIsDesktop(false);
       }
 
-      if (width >= 1024) {
-        setIsDesktop(true);
-        setIsTablet(false);
+      // Small Screen
+      if (width <= 375) {
+        setIsSmallScreen(true);
       }
     };
 
@@ -42,6 +51,7 @@ export function useWindowWidth() {
   // console.log({ isMobile, isTablet, isDesktop });
 
   return {
+    isSmallScreen,
     isMobile,
     isTablet,
     isDesktop,

@@ -9,22 +9,17 @@ import {
 import { HiHeart, HiOutlineHeart } from "react-icons/hi";
 import { product } from "../../utils/types";
 import QuantityControlPanel from "../../components/QuantityControlPanel";
-import { useProducts } from "../../hooks/useProducts.ts";
 import _ from "lodash";
 import { useWindowWidth } from "../../hooks/useWindowWidth.ts";
 import ProductsSkeleton from "./ProductsSkeleton.tsx";
+import { usePagination } from "@/hooks/usePagination.ts";
+import Pagination from "@mui/material/Pagination";
+import PaginationItem from "@mui/material/PaginationItem";
+import { HiShoppingBag } from "react-icons/hi2";
 
 const Products: React.FC = () => {
-  const { isMobile, isTablet, isDesktop } = useWindowWidth();
-  const {
-    isLoading,
-    data,
-    error,
-    currentPage,
-    totalPages,
-    goToNextPage,
-    goToPrevPage,
-  } = useProducts();
+  const { isSmallScreen, isMobile, isTablet, isDesktop } = useWindowWidth();
+  const { isLoading, data, error, page, totalPages } = usePagination();
   const dispatch = useDispatch();
   const wishlistItems = useSelector(selectWishlistItems);
   const cartItems = useSelector(selectCartItems);
@@ -48,26 +43,6 @@ const Products: React.FC = () => {
 
   return (
     <>
-      <div className="mb-4 space-x-4">
-        <button
-          type="button"
-          className="text-blue-500 underline hover:bg-gray-200 disabled:cursor-not-allowed"
-          onClick={goToPrevPage}
-          disabled={currentPage === 1}
-        >
-          &larr; prev
-        </button>
-
-        <button
-          type="button"
-          className="text-blue-500 underline hover:bg-gray-200 disabled:cursor-not-allowed"
-          onClick={goToNextPage}
-          disabled={currentPage === totalPages}
-        >
-          next &rarr;
-        </button>
-      </div>
-
       <div className="grid grid-cols-2 gap-x-3 gap-y-6 sm:gap-x-4 md:grid-cols-4 lg:gap-x-4">
         {data?.products.map((product: product) => (
           <div
@@ -126,15 +101,32 @@ const Products: React.FC = () => {
               />
             ) : (
               <button
-                className="w-full rounded-md bg-indigo-500 p-1.5 text-sm text-white hover:bg-indigo-600"
+                className="flex w-full justify-center gap-1.5 rounded-md bg-indigo-500 p-1.5 text-sm text-white hover:bg-indigo-600"
                 type="button"
                 onClick={() => handleAddItemToCart(product)}
               >
-                Add to cart
+                <HiShoppingBag size={18} />
+                <span>Add to cart</span>
               </button>
             )}
           </div>
         ))}
+      </div>
+
+      <div className="mt-5 flex justify-center space-x-4">
+        <Pagination
+          shape="rounded"
+          size={`${isSmallScreen ? "small" : "medium"}`}
+          page={page}
+          count={totalPages}
+          renderItem={(item) => (
+            <PaginationItem
+              component={Link}
+              to={`/products${item.page === 1 ? "" : `?page=${item.page}`}`}
+              {...item}
+            />
+          )}
+        />
       </div>
     </>
   );
