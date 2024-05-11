@@ -11,19 +11,12 @@ export function useWindowWidth() {
       const width = window.innerWidth;
       // console.log(width);
 
-      // Laptop
-      if (width >= 1024) {
-        setIsDesktop(true);
+      // Small Screen
+      if (width <= 375) {
+        setIsSmallScreen(true);
+        setIsMobile(false);
         setIsTablet(false);
-      }
-
-      // Tablet
-      if (width >= 768 && width < 1024) {
-        setIsTablet(true);
         setIsDesktop(false);
-      } else {
-        setIsDesktop(false);
-        setIsTablet(false);
       }
 
       // Mobile
@@ -31,11 +24,23 @@ export function useWindowWidth() {
         setIsMobile(true);
         setIsTablet(false);
         setIsDesktop(false);
+        setIsSmallScreen(false);
       }
 
-      // Small Screen
-      if (width <= 375) {
-        setIsSmallScreen(true);
+      // Tablet
+      if (width >= 768 && width < 1024) {
+        setIsTablet(true);
+        setIsDesktop(false);
+        setIsMobile(false);
+        setIsSmallScreen(false);
+      }
+
+      // Laptop
+      if (width >= 1024) {
+        setIsDesktop(true);
+        setIsTablet(false);
+        setIsMobile(false);
+        setIsSmallScreen(false);
       }
     };
 
@@ -48,7 +53,7 @@ export function useWindowWidth() {
     };
   }, []);
 
-  // console.log({ isMobile, isTablet, isDesktop });
+  // console.log({ isMobile, isTablet, isDesktop, isSmallScreen });
 
   return {
     isSmallScreen,

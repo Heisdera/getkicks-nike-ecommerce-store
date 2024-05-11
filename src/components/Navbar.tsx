@@ -1,10 +1,7 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Popover, Transition } from "@headlessui/react";
-import {
-  // HiBars3 as Bars3Icon,
-  HiOutlineHeart,
-} from "react-icons/hi";
+import { HiOutlineHeart } from "react-icons/hi";
 import { HiMagnifyingGlass, HiOutlineShoppingBag } from "react-icons/hi2";
 import { useSelector } from "react-redux";
 import { selectCartTotalQTY } from "../features/cart/CartSlice";
@@ -147,7 +144,7 @@ const Navbar: React.FC = () => {
   return (
     <nav
       aria-label="Top"
-      className="mx-auto max-w-[1940px] px-4 sm:px-6 lg:px-8"
+      className="mx-auto max-w-[1940px] px-3.5 sm:px-6 lg:px-8"
     >
       <div className="border-b border-gray-200">
         <div className="flex h-16 items-center">
