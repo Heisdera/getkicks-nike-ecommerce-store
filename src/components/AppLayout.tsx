@@ -14,7 +14,7 @@ const AppLayout: React.FC = () => {
           </p>
         </div> */}
 
-        <p className="mx-28 flex h-10 items-center justify-center border-b font-medium text-gray-700 min-[360px]:h-14 min-[360px]:text-2xl">
+        <p className="mx-28 mt-1 flex h-10 items-center justify-center border-b font-medium text-gray-700 min-[360px]:h-14 min-[360px]:text-2xl">
           GetKicks
         </p>
 
