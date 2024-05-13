@@ -32,7 +32,7 @@ interface props {
 }
 
 const ProductDetails: React.FC<props> = (props) => {
-  const [displayImage, setDisplayImage] = useState(0);
+  const [displayImageIndex, setDisplayImageIndex] = useState(0);
   const dispatch = useDispatch();
   const wishlistItems = useSelector(selectWishlistItems);
   const cartItems = useSelector(selectCartItems);
@@ -45,8 +45,8 @@ const ProductDetails: React.FC<props> = (props) => {
     dispatch(setToggleWishlistItem(item));
   }
 
-  function handleChangeDisplayImage(index: number) {
-    setDisplayImage(index);
+  function handleChangeDisplayImageIndex(index: number) {
+    setDisplayImageIndex(index);
   }
 
   return (
@@ -57,7 +57,7 @@ const ProductDetails: React.FC<props> = (props) => {
             <div className="col-span-3 rounded-md bg-[#f6f6f6] drop-shadow">
               <img
                 className="w-full"
-                src={props.productDetails.images[displayImage]}
+                src={props.productDetails.images[displayImageIndex]}
                 alt={props.productDetails.name}
               />
             </div>
@@ -66,9 +66,9 @@ const ProductDetails: React.FC<props> = (props) => {
               <div
                 key={i}
                 onClick={() => {
-                  handleChangeDisplayImage(i);
+                  handleChangeDisplayImageIndex(i);
                 }}
-                className="cursor-pointer rounded-md bg-[#f6f6f6] shadow transition-all duration-300 hover:ring-1 hover:ring-gray-400"
+                className={`${i === displayImageIndex && "ring-1 ring-gray-400"} cursor-pointer rounded-md bg-[#f6f6f6] shadow transition-all duration-300 hover:ring-1 hover:ring-gray-400`}
               >
                 <img className="w-full py-2" src={image} alt="" />
               </div>
