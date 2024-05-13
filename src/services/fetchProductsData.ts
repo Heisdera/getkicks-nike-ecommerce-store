@@ -7,7 +7,7 @@ const options = {
   },
 };
 
-export async function fetchProductsData(collection: string, page: number) {
+export async function fetchProductsData(collection: string | undefined, page: number) {
   const response = await fetch(
     `${BaseUrl}/${collection}?page=${page}`,
     options,
