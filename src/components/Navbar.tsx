@@ -130,21 +130,21 @@ const Navbar: React.FC = () => {
       <div className="border-b border-gray-200">
         <div className="flex h-16 items-center">
           {/* Logo */}
-          <div className="flex lg:ml-0">
+          <div className="flex ml-1 mt-1">
             <Link to="/">
               {/* <img className="ml-1 mt-1" src={GetKicksLogo} alt="logo" /> */}
 
               <svg
                 version="1.0"
                 xmlns="http://www.w3.org/2000/svg"
-                width="77"
-                height="77"
+                width="78"
+                height="78"
                 viewBox="0 0 434.000000 275.000000"
                 preserveAspectRatio="xMidYMid meet"
               >
                 <g
                   transform="translate(0.000000,275.000000) scale(0.100000,-0.100000)"
-                  fill="#555"
+                  fill="#444"
                   stroke="none"
                 >
                   <motion.path
