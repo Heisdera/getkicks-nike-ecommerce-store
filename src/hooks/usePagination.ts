@@ -7,7 +7,7 @@ export function usePagination() {
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const page = Number(query.get("page")) || 1;
-  const { collection } = useParams<string>();
+  const { collection } = useParams<string | undefined>();
 
   const { isLoading, data, error } = useProducts(collection, page);
 
