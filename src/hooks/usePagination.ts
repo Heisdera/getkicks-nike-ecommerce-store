@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useProducts } from "./useProducts.ts";
 
 const ITEMSPERPAGE = 40;
@@ -7,11 +7,9 @@ export function usePagination() {
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const page = Number(query.get("page")) || 1;
+  const { collection } = useParams<string>();
 
-  // const [currentPage, setCurrentPage] = useState<number>(page);
-  // console.log(page);
-
-  const { isLoading, data, error } = useProducts(page);
+  const { isLoading, data, error } = useProducts(collection, page);
 
   const totalPages = Math.ceil(data?.total_results / ITEMSPERPAGE) || 0;
 

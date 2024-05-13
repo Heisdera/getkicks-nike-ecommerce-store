@@ -17,7 +17,11 @@ import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import { HiShoppingBag } from "react-icons/hi2";
 
-const Products: React.FC = () => {
+interface props {
+  collection: string | undefined;
+}
+
+const Products: React.FC<props> = (props) => {
   const { isSmallScreen, isMobile, isTablet, isDesktop } = useWindowWidth();
   const { isLoading, data, error, page, totalPages } = usePagination();
   const dispatch = useDispatch();
@@ -122,7 +126,7 @@ const Products: React.FC = () => {
           renderItem={(item) => (
             <PaginationItem
               component={Link}
-              to={`/products${item.page === 1 ? "" : `?page=${item.page}`}`}
+              to={`/collections/${props.collection}${item.page === 1 ? "" : `?page=${item.page}`}`}
               {...item}
             />
           )}

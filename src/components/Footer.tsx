@@ -136,7 +136,7 @@ const Footer: React.FC = () => {
               ease: "linear",
             },
           }}
-          href=""
+          href="https://www.linkedin.com/in/raphael-wisdom-heisderatech"
         >
           <FaLinkedin size={22} />
         </motion.a>

@@ -14,9 +14,9 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
 
     children: [
-      { index: true, element: <Navigate to="/products" replace /> },
+      { index: true, element: <Navigate to="/collections/nike" replace /> },
       {
-        path: "/products",
+        path: "/collections/:collection",
         element: <ProductsPage />,
       },
       {

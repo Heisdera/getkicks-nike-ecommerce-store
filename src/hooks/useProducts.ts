@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchProductsData } from "../services/fetchProductsData.ts";
 
-export function useProducts(page: number) {
+export function useProducts(collection: string | undefined, page: number) {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["products", page],
-    queryFn: () => fetchProductsData(page),
+    queryKey: ["collection", collection, page],
+    queryFn: () => fetchProductsData(collection, page),
   });
 
   return {

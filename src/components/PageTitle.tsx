@@ -2,7 +2,7 @@ import React from "react";
 import { FiChevronsRight } from "react-icons/fi";
 
 interface props {
-  title: string;
+  title: string | undefined;
 }
 
 const PageTitle: React.FC<props> = props => {
