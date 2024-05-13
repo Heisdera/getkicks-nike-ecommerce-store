@@ -46,7 +46,7 @@ const ProductsPage: React.FC = () => {
             key={i}
             type="button"
             className={({ isActive }) =>
-              `${isActive ? "border border-gray-100 bg-gray-100" : "border border-gray-200 transition-colors duration-500 hover:border-black"} rounded-md px-2.5 py-2`
+              `${isActive ? "border border-gray-100 bg-gray-100" : "border border-gray-200 transition-colors duration-500 md:hover:border-black"} rounded-md px-2.5 py-2`
             }
           >
             {collection.text}
