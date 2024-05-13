@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { selectCartItems, setAddItemToCart } from "../cart/CartSlice";
 import { productDetails } from "../../utils/types";
@@ -11,7 +11,6 @@ import { HiHeart, HiOutlineHeart } from "react-icons/hi";
 import QuantityControlPanel from "../../components/QuantityControlPanel";
 
 interface props {
-  productId: string | undefined;
   productDetails: {
     name: string;
     id: string;
@@ -33,6 +32,7 @@ interface props {
 }
 
 const ProductDetails: React.FC<props> = (props) => {
+  const [displayImage, setDisplayImage] = useState(0);
   const dispatch = useDispatch();
   const wishlistItems = useSelector(selectWishlistItems);
   const cartItems = useSelector(selectCartItems);
@@ -45,28 +45,34 @@ const ProductDetails: React.FC<props> = (props) => {
     dispatch(setToggleWishlistItem(item));
   }
 
+  function handleChangeDisplayImage(index: number) {
+    setDisplayImage(index);
+  }
+
   return (
-    <section className="bg-white py-8 antialiased md:py-16">
+    <section className="bg-white pb-8 pt-2 antialiased md:py-16">
       <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
         <div className="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
-          <div className="grid grid-cols-2 gap-2 md:gap-3">
-            <div className="col-span-2 rounded-md bg-[#f6f6f6] hover:outline-none hover:ring-1 hover:ring-indigo-200">
-              <img className="w-full" src={props.productDetails.image} alt="" />
-            </div>
-            <div className="rounded-md bg-[#f6f6f6] hover:outline-none hover:ring-1 hover:ring-indigo-200">
+          <div className="grid grid-cols-3 gap-2 md:gap-3">
+            <div className="col-span-3 rounded-md bg-[#f6f6f6] drop-shadow">
               <img
                 className="w-full"
-                src={props.productDetails.images[0]}
-                alt=""
+                src={props.productDetails.images[displayImage]}
+                alt={props.productDetails.name}
               />
             </div>
-            <div className="rounded-md bg-[#f6f6f6] hover:outline-none hover:ring-1 hover:ring-indigo-200">
-              <img
-                className="w-full"
-                src={props.productDetails.images[1]}
-                alt=""
-              />
-            </div>
+
+            {props.productDetails.images.map((image, i) => (
+              <div
+                key={i}
+                onClick={() => {
+                  handleChangeDisplayImage(i);
+                }}
+                className="cursor-pointer rounded-md bg-[#f6f6f6] shadow transition-all duration-300 hover:ring-1 hover:ring-gray-400"
+              >
+                <img className="w-full py-2" src={image} alt="" />
+              </div>
+            ))}
           </div>
 
           <div className="mt-6 sm:mt-8 lg:mt-0">
@@ -75,7 +81,7 @@ const ProductDetails: React.FC<props> = (props) => {
             </h1>
             <div className="mt-2 sm:flex sm:items-center sm:gap-4">
               <p className="text-2xl font-semibold text-gray-800 sm:text-3xl">
-                ${props.productDetails.price}
+                €{props.productDetails.price}
               </p>
 
               <div className="mt-2 flex items-center gap-2 sm:mt-0">
@@ -149,35 +155,41 @@ const ProductDetails: React.FC<props> = (props) => {
             </div>
 
             <div className="mt-6 sm:mt-8 sm:flex sm:items-center sm:gap-4">
-                {wishlistItems.find(
-                  (item) => item.id === props.productDetails.id,
-                ) ? (
-                  <button
-                className="group flex w-full items-center justify-center gap-2 rounded-lg border border-red-500 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 transition-colors duration-300 hover:bg-gray-100 hover:text-indigo-500 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 hover:border-gray-200"
-                type="button"
-                onClick={() => handleToggleWishlistState(props.productDetails)}
-              >
-                    <HiHeart
-                      className="h-5 w-5 flex-shrink-0 text-red-500 md:h-5 md:w-5 lg:right-5 lg:top-5 lg:h-6 lg:w-6"
-                      aria-hidden="true"
-                    />
-                    <span className="text-red-500 transition-colors duration-300 group-hover:text-gray-500">Remove from favorites</span>
-                  </button>
-                ) : (
-                  <button
-                className="group flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 transition-colors duration-300 hover:bg-gray-100 hover:text-indigo-500 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100"
-                type="button"
-                onClick={() => handleToggleWishlistState(props.productDetails)}
-              >
-                    <HiOutlineHeart
-                      strokeWidth={1}
-                      className="h-5 w-5 flex-shrink-0 text-gray-500 transition-colors duration-300 group-hover:text-red-500 md:h-5 md:w-5 lg:right-5 lg:top-5 lg:h-6 lg:w-6"
-                      aria-hidden="true"
-                      role="button"
-                    />
-                    <span>Add to favorites</span>
-                  </button>
-                )}
+              {wishlistItems.find(
+                (item) => item.id === props.productDetails.id,
+              ) ? (
+                <button
+                  className="group flex w-full items-center justify-center gap-2 rounded-lg border border-red-500 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 transition-colors duration-300 hover:border-gray-200 hover:bg-gray-100 hover:text-indigo-500 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100"
+                  type="button"
+                  onClick={() =>
+                    handleToggleWishlistState(props.productDetails)
+                  }
+                >
+                  <HiHeart
+                    className="h-5 w-5 flex-shrink-0 text-red-500 md:h-5 md:w-5 lg:right-5 lg:top-5 lg:h-6 lg:w-6"
+                    aria-hidden="true"
+                  />
+                  <span className="text-red-500 transition-colors duration-300 group-hover:text-gray-500">
+                    Remove from favorites
+                  </span>
+                </button>
+              ) : (
+                <button
+                  className="group flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 transition-colors duration-300 hover:bg-gray-100 hover:text-indigo-500 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100"
+                  type="button"
+                  onClick={() =>
+                    handleToggleWishlistState(props.productDetails)
+                  }
+                >
+                  <HiOutlineHeart
+                    strokeWidth={1}
+                    className="h-5 w-5 flex-shrink-0 text-gray-500 transition-colors duration-300 group-hover:text-red-500 md:h-5 md:w-5 lg:right-5 lg:top-5 lg:h-6 lg:w-6"
+                    aria-hidden="true"
+                    role="button"
+                  />
+                  <span>Add to favorites</span>
+                </button>
+              )}
 
               {cartItems.find((item) => item.id === props.productDetails.id) ? (
                 <div className="mx-auto mt-4 rounded-lg px-1 py-1 font-medium text-gray-600 sm:mt-0 sm:w-[20%] lg:w-4/12">

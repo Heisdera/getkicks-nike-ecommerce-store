@@ -1,4 +1,4 @@
-const url = "https://nike-sneakers-api.p.rapidapi.com/products";
+const URL = "https://nike-sneakers-api.p.rapidapi.com/products";
 
 const options = {
   method: "GET",
@@ -9,8 +9,8 @@ const options = {
 };
 
 export async function fetchProductDetails(productId: string | undefined) {
-  // const individualURL = `${url}/nike-dunk-low-medium-olive`
-  const individualProductURL = `${url}/${productId}`;
+  // const individualURL = `${URL}/nike-dunk-low-medium-olive`
+  const individualProductURL = `${URL}/${productId}`;
 
   const response = await fetch(individualProductURL, options);
   const data = await response.json();

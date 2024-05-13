@@ -43,8 +43,8 @@ const Products: React.FC<props> = (props) => {
   if (isLoading) return <ProductsSkeleton />;
 
   if (error)
-    return <div className="bg-red-600 text-4xl">Error fetching data</div>;
-
+    return <div className="text-red-600 text-4xl mx-auto max-w-screen-xl px-4">Error fetching data</div>;
+  
   return (
     <>
       <div className="grid grid-cols-2 gap-x-3 gap-y-6 sm:gap-x-4 md:grid-cols-4 lg:gap-x-4">

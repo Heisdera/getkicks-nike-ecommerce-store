@@ -5,7 +5,7 @@ import Footer from "./Footer";
 
 const AppLayout: React.FC = () => {
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   const isCartPage = location.pathname === "/cart";
 
   return (

@@ -7,12 +7,14 @@ const ProductDetailsSkeleton: React.FC = () => {
       <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
         <div className="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
           <div>
-            <Skeleton className="mb-1 h-[250px] rounded-md md:mb-2" />
+            <Skeleton className="mb-1 h-[270px] rounded-md md:mb-2" />
 
-            <div className="grid grid-cols-2 gap-x-2 md:gap-x-3">
-              <Skeleton className="h-[120px] rounded-md" />
+            <div className="grid grid-cols-3 gap-x-2 md:gap-x-3">
+              <Skeleton className="h-[110px] rounded-md" />
 
-              <Skeleton className="h-[120px] rounded-md" />
+              <Skeleton className="h-[110px] rounded-md" />
+
+              <Skeleton className="h-[110px] rounded-md" />
             </div>
           </div>
 

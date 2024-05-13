@@ -1,28 +1,27 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 import ProductDetails from "../features/products/ProductDetails";
-import { Link } from "react-router-dom";
-// import { getProductDetails } from "../data/data";
+import { useNavigate } from "react-router-dom";
+import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import { useProductDetails } from "../hooks/useProductDetails";
 import ProductDetailsSkeleton from "@/features/products/ProductDetailsSkeleton";
-// import { productDetails } from "../utils/types";
 
 const ProductDetailsPage: React.FC = () => {
   const { isLoading, error, productDetails } = useProductDetails();
-  const { productId } = useParams();
+  const navigate = useNavigate();
 
   if (isLoading) return <ProductDetailsSkeleton />;
 
   if (error)
-    return <div className="bg-red-600 text-4xl">Error fetching data</div>;
+    return <div className="text-red-600 text-4xl mx-auto max-w-screen-xl px-4">Error fetching data</div>;
 
   return (
     <div>
-      <Link to="/" className="text-blue-400 underline">
-        &larr; Back to Products Page
-      </Link>
+      <button className="ml-3 mt-1 flex items-end gap-1 text-lg font-medium text-gray-500 hover:text-indigo-500" onClick={() => navigate(-1)}>
+        <MdOutlineKeyboardBackspace size={24} />
+        Back
+      </button>
 
-      <ProductDetails productId={productId} productDetails={productDetails} />
+      <ProductDetails productDetails={productDetails} />
     </div>
   );
 };
