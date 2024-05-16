@@ -5,6 +5,7 @@ export function useWindowWidth() {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
+  const [isWideScreen, setIsWideScreen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -17,6 +18,7 @@ export function useWindowWidth() {
         setIsMobile(false);
         setIsTablet(false);
         setIsDesktop(false);
+        setIsWideScreen(false);
       }
 
       // Mobile
@@ -25,6 +27,7 @@ export function useWindowWidth() {
         setIsTablet(false);
         setIsDesktop(false);
         setIsSmallScreen(false);
+        setIsWideScreen(false);
       }
 
       // Tablet
@@ -33,11 +36,22 @@ export function useWindowWidth() {
         setIsDesktop(false);
         setIsMobile(false);
         setIsSmallScreen(false);
+        setIsWideScreen(false);
       }
 
       // Laptop
       if (width >= 1024) {
         setIsDesktop(true);
+        setIsTablet(false);
+        setIsMobile(false);
+        setIsSmallScreen(false);
+        setIsWideScreen(false);
+      }
+
+      // WideScreen
+      if (width >= 1324) {
+        setIsWideScreen(true);
+        setIsDesktop(false);
         setIsTablet(false);
         setIsMobile(false);
         setIsSmallScreen(false);
@@ -53,12 +67,13 @@ export function useWindowWidth() {
     };
   }, []);
 
-  // console.log({ isMobile, isTablet, isDesktop, isSmallScreen });
+  // console.log({ isMobile, isTablet, isDesktop, isSmallScreen, isWideScreen });
 
   return {
     isSmallScreen,
     isMobile,
     isTablet,
     isDesktop,
+    isWideScreen,
   };
 }

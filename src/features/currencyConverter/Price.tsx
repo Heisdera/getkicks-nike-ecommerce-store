@@ -14,12 +14,11 @@ const Price: React.FC<Props> = ({ className, price }) => {
   const baseCurrency = useSelector(selectBaseCurrency);
   const { isLoading, data: rates } = useConversionRates(baseCurrency);
 
-  if (isLoading) return <div className="animate-pulse">Loading</div>;
+  if (isLoading) return <span className="animate-pulse">Loading</span>;
+
   const convertedPrice = convertPrice(price, rates, selectedCurrency);
 
-  console.log(rates);
-
-  return <div className={`default-classes ${className}`}>{convertedPrice}</div>;
+  return <span className={`${className}`}>{convertedPrice}</span>;
 };
 
 export default Price;

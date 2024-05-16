@@ -16,7 +16,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { setCurrency } from "../features/currencyConverter/currencySlice";
+import {
+  selectSelectedCurrency,
+  setCurrency,
+} from "../features/currencyConverter/currencySlice";
 import { useDispatch } from "react-redux";
 import { pathVariant } from "../utils/helpers";
 
@@ -146,6 +149,7 @@ const currencies = [
 
 const Navbar: React.FC = () => {
   const dispatch = useDispatch();
+  const selectedCurrency = useSelector(selectSelectedCurrency);
   const cartTotalItems = useSelector(selectCartTotalQTY);
   const wishlistTotalItems = useSelector(selectWishlistTotalItems);
 
@@ -154,13 +158,12 @@ const Navbar: React.FC = () => {
   }
 
   return (
-    <nav aria-label="Top" className="px-3.5 sm:px-6 lg:px-8">
+    <nav aria-label="Top" className="px-3 sm:px-6 lg:px-8 w-full">
       <div className="border-b border-gray-200">
         <div className="flex h-16 items-center">
           {/* GetKicks Logo */}
           <div className="ml-1 mt-1 flex">
-            <Link to="/">
-              {/* <img className="ml-1 mt-1" src={GetKicksLogo} alt="logo" /> */}
+            <Link to="/collections/nike">
               <svg
                 version="1.0"
                 xmlns="http://www.w3.org/2000/svg"
@@ -407,21 +410,21 @@ const Navbar: React.FC = () => {
             </div>
 
             {/* Currency */}
-            <div className="hidden lg:ml-8 lg:!flex">
+            <div className="lg:ml-8 lg:!flex">
               <Select
-                defaultValue="EUR"
+                defaultValue={selectedCurrency}
                 onValueChange={(value) => handleCurrencyChange(value)}
               >
-                <SelectTrigger className="w-[110px] border-0 focus:ring-1 focus:ring-offset-1">
+                <SelectTrigger className="min-w-[5rem] border-0 focus:ring-offset-0 lg:w-[110px]">
                   <SelectValue defaultChecked />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="min-w-[5rem]">
                   <SelectGroup>
                     {currencies.map((currency) => (
                       <SelectItem
                         key={currency.currencyCode2}
                         value={currency.currencyCode3}
-                        className="text-xs"
+                        className="flex gap-2 text-xs"
                       >
                         <img
                           src={`https://flagcdn.com/w160/${currency.currencyCode2}.webp`}

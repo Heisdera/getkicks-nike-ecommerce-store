@@ -4,8 +4,9 @@ import { useDispatch } from "react-redux";
 import { setRemoveItemFromWishlist } from "./wishlistSlice";
 import { HiHeart } from "react-icons/hi";
 import _ from "lodash";
+import Price from "../currencyConverter/Price";
 
-interface props {
+interface WishlistItemProps {
   wishlistItem: {
     name: string;
     image: string;
@@ -16,22 +17,22 @@ interface props {
   };
 }
 
-const WishlistItem: React.FC<props> = (props) => {
+const WishlistItem: React.FC<WishlistItemProps> = ({ wishlistItem }) => {
   const dispatch = useDispatch();
 
   function handleRemoveItemFromWishlist() {
-    dispatch(setRemoveItemFromWishlist(props.wishlistItem));
+    dispatch(setRemoveItemFromWishlist(wishlistItem));
   }
 
   return (
     <div className="group relative cursor-pointer rounded-xl border-[0.5px] bg-white p-2.5 md:p-2 lg:p-3">
       <Link
         className="flex aspect-[6/5] items-center justify-center rounded-md bg-[#f6f6f6]"
-        to={`/products/${props.wishlistItem.id}`}
+        to={`/products/${wishlistItem.id}`}
       >
         <img
-          src={props.wishlistItem.image}
-          alt={props.wishlistItem.id}
+          src={wishlistItem.image}
+          alt={wishlistItem.id}
           className="pt-8 group-hover:opacity-85"
         />
       </Link>
@@ -43,11 +44,11 @@ const WishlistItem: React.FC<props> = (props) => {
       />
 
       <Link
-        to={`/products/${props.wishlistItem.id}`}
+        to={`/products/${wishlistItem.id}`}
         className="flex items-center justify-between gap-4 pt-3 leading-tight"
       >
         <h3 className="text-sm font-medium text-gray-700">
-          {_.truncate(props.wishlistItem.name, {
+          {_.truncate(wishlistItem.name, {
             length: 20,
             separator: " ",
             omission: "...",
@@ -55,7 +56,8 @@ const WishlistItem: React.FC<props> = (props) => {
         </h3>
 
         <p className="font-semibold text-gray-900">
-          {props.wishlistItem.price_string}
+          {/* €{wishlistItem.price} */}
+          <Price className="" price={wishlistItem.price} />
         </p>
       </Link>
     </div>

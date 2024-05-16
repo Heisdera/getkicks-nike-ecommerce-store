@@ -5,10 +5,8 @@ export async function fetchConversionRates(baseCurrency: string) {
   const response = await fetch(`${API_URL}/latest/${baseCurrency}`);
   const data = await response.json();
 
-  console.log(response);
-
   if (!response.ok) {
-    throw new Error("Failed to fetch products data");
+    throw new Error("Failed to fetch conversion rates");
   }
 
   return data;

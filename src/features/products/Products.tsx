@@ -23,7 +23,8 @@ interface props {
 }
 
 const Products: React.FC<props> = ({ collection }) => {
-  const { isSmallScreen, isMobile, isTablet, isDesktop } = useWindowWidth();
+  const { isSmallScreen, isMobile, isTablet, isDesktop, isWideScreen } =
+    useWindowWidth();
   const { isLoading, data, error, page, totalPages } = usePagination();
   const dispatch = useDispatch();
   const wishlistItems = useSelector(selectWishlistItems);
@@ -68,39 +69,54 @@ const Products: React.FC<props> = ({ collection }) => {
                 className="pt-8 group-hover:opacity-85"
               />
             </Link>
+
             {wishlistItems.find((item) => item.id === product.id) ? (
-              <HiHeart
-                className="absolute right-4 top-4 h-6 w-6 flex-shrink-0 text-red-500 md:h-5 md:w-5 lg:right-5 lg:top-5 lg:h-6 lg:w-6"
-                aria-hidden="true"
+              <button
+                type="button"
+                title="Remove from Wishlist"
+                className="absolute right-4 top-4 rounded-md focus:outline-none 
+              focus:ring-2 focus:ring-ring focus:ring-offset-2 lg:right-5 lg:top-5"
                 onClick={() => handleToggleWishlistState(product)}
-              />
+              >
+                <HiHeart
+                  className="h-6 w-6 flex-shrink-0 text-red-500 md:h-5 md:w-5 lg:h-6 lg:w-6"
+                  aria-hidden="true"
+                />
+              </button>
             ) : (
-              <HiOutlineHeart
-                strokeWidth={1}
-                className="absolute right-4 top-4 h-6 w-6 flex-shrink-0 text-gray-500 transition-colors duration-300 hover:text-red-500 md:h-5 md:w-5 lg:right-5 lg:top-5 lg:h-6 lg:w-6"
-                aria-hidden="true"
-                role="button"
+              <button
+                type="button"
+                title="Remove from Wishlist"
+                className="absolute right-4 top-4 rounded-md focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 lg:right-5 lg:top-5"
                 onClick={() => handleToggleWishlistState(product)}
-              />
+              >
+                <HiOutlineHeart
+                  strokeWidth={1}
+                  className="h-6 w-6 flex-shrink-0 text-gray-500 transition-colors duration-300 hover:text-red-500 md:h-5 md:w-5 lg:h-6 lg:w-6"
+                  aria-hidden="true"
+                />
+              </button>
             )}
 
             <Link
               to={`/products/${product.id}`}
-              className="flex items-center justify-between gap-1 py-3 leading-tight sm:gap-4"
+              className="grid grid-cols-1 py-2"
             >
-              <h3 className="text-xs font-medium text-gray-600 min-[360px]:text-sm sm:text-base">
-                {isDesktop
-                  ? handleTruncateProductName(product.name, 18)
-                  : isTablet
-                    ? handleTruncateProductName(product.name, 14)
-                    : isMobile
-                      ? handleTruncateProductName(product.name, 16)
-                      : handleTruncateProductName(product.name, 12)}
+              <h3 className="text-xs font-medium text-gray-500 min-[360px]:text-sm sm:text-base">
+                {isWideScreen
+                  ? handleTruncateProductName(product.name, 34)
+                  : isDesktop
+                    ? handleTruncateProductName(product.name, 24)
+                    : isTablet
+                      ? handleTruncateProductName(product.name, 19)
+                      : isMobile
+                        ? handleTruncateProductName(product.name, 22)
+                        : handleTruncateProductName(product.name, 19)}
               </h3>
 
-              <p className="text-xs font-semibold text-gray-900 min-[360px]:text-sm sm:text-base">
+              <p className="text-sm font-semibold text-gray-900 min-[360px]:text-base xl:text-lg">
+                {/* €{product.price} */}
                 <Price className="" price={product.price} />
-                {/* {product.price_string} */}
               </p>
             </Link>
 

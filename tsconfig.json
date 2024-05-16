@@ -20,7 +20,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
-    "noEmitOnError": false,
+    "noEmitOnError": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {

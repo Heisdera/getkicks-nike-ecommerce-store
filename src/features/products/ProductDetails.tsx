@@ -9,8 +9,9 @@ import {
 } from "../wishlist/wishlistSlice";
 import { HiHeart, HiOutlineHeart } from "react-icons/hi";
 import QuantityControlPanel from "../../components/QuantityControlPanel";
+import Price from "../currencyConverter/Price";
 
-interface props {
+interface ProductDetailsProps {
   productDetails: {
     name: string;
     id: string;
@@ -31,7 +32,7 @@ interface props {
   };
 }
 
-const ProductDetails: React.FC<props> = (props) => {
+const ProductDetails: React.FC<ProductDetailsProps> = ({ productDetails }) => {
   const [displayImageIndex, setDisplayImageIndex] = useState(0);
   const dispatch = useDispatch();
   const wishlistItems = useSelector(selectWishlistItems);
@@ -56,12 +57,12 @@ const ProductDetails: React.FC<props> = (props) => {
           <div className="col-span-3 rounded-md bg-[#f6f6f6] drop-shadow">
             <img
               className="w-full"
-              src={props.productDetails.images[displayImageIndex]}
-              alt={props.productDetails.name}
+              src={productDetails.images[displayImageIndex]}
+              alt={productDetails.name}
             />
           </div>
 
-          {props.productDetails.images.map((image, i) => (
+          {productDetails.images.map((image, i) => (
             <div
               key={i}
               onClick={() => {
@@ -76,11 +77,12 @@ const ProductDetails: React.FC<props> = (props) => {
 
         <div className="mt-6 sm:mt-8 lg:mt-0">
           <h1 className="text-xl font-medium text-gray-900 sm:text-2xl">
-            {props.productDetails.name}
+            {productDetails.name}
           </h1>
           <div className="mt-2 sm:flex sm:items-center sm:gap-4">
             <p className="text-2xl font-semibold text-gray-800 sm:text-3xl">
-              €{props.productDetails.price}
+              {/* €{productDetails.price} */}
+              <Price className="" price={productDetails.price} />
             </p>
 
             <div className="mt-2 flex items-center gap-2 sm:mt-0">
@@ -154,13 +156,11 @@ const ProductDetails: React.FC<props> = (props) => {
           </div>
 
           <div className="mt-6 sm:mt-8 sm:flex sm:items-center sm:gap-4">
-            {wishlistItems.find(
-              (item) => item.id === props.productDetails.id,
-            ) ? (
+            {wishlistItems.find((item) => item.id === productDetails.id) ? (
               <button
                 className="group flex w-full items-center justify-center gap-2 rounded-lg border border-red-500 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 transition-colors duration-300 hover:border-gray-200 hover:bg-gray-100 hover:text-indigo-500 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100"
                 type="button"
-                onClick={() => handleToggleWishlistState(props.productDetails)}
+                onClick={() => handleToggleWishlistState(productDetails)}
               >
                 <HiHeart
                   className="h-5 w-5 flex-shrink-0 text-red-500 md:h-5 md:w-5 lg:right-5 lg:top-5 lg:h-6 lg:w-6"
@@ -174,7 +174,7 @@ const ProductDetails: React.FC<props> = (props) => {
               <button
                 className="group flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 transition-colors duration-300 hover:bg-gray-100 hover:text-indigo-500 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100"
                 type="button"
-                onClick={() => handleToggleWishlistState(props.productDetails)}
+                onClick={() => handleToggleWishlistState(productDetails)}
               >
                 <HiOutlineHeart
                   strokeWidth={1}
@@ -186,10 +186,10 @@ const ProductDetails: React.FC<props> = (props) => {
               </button>
             )}
 
-            {cartItems.find((item) => item.id === props.productDetails.id) ? (
+            {cartItems.find((item) => item.id === productDetails.id) ? (
               <div className="mx-auto mt-4 rounded-lg px-1 py-1 font-medium text-gray-600 sm:mt-0 sm:w-[20%] lg:w-4/12">
                 <QuantityControlPanel
-                  product={props.productDetails}
+                  product={productDetails}
                   color="text-indigo-500 hover:text-indigo-600"
                 />
               </div>
@@ -197,7 +197,7 @@ const ProductDetails: React.FC<props> = (props) => {
               <button
                 className="mt-4 flex w-full items-center justify-center rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-medium text-white transition-colors duration-300 hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 sm:mt-0"
                 type="button"
-                onClick={() => handleAddItemToCart(props.productDetails)}
+                onClick={() => handleAddItemToCart(productDetails)}
               >
                 <svg
                   className="-ms-2 me-2 h-5 w-5"
@@ -224,33 +224,31 @@ const ProductDetails: React.FC<props> = (props) => {
           <hr className="my-6 border-gray-200 md:my-8" />
 
           <p className="mb-6 text-gray-500">
-            {props.productDetails.description.desc_1}
+            {productDetails.description.desc_1}
           </p>
 
-          <p className="text-gray-500">
-            {props.productDetails.description.desc_2}
-          </p>
+          <p className="text-gray-500">{productDetails.description.desc_2}</p>
 
           <div className="mt-2">
             <p>
               <span className="text-sm">Color: </span>
               <span className="font-medium">
-                {props.productDetails.description.color[0]}
-                {props.productDetails.description?.color[1]}
+                {productDetails.description.color[0]}
+                {productDetails.description?.color[1]}
               </span>
             </p>
 
             <p>
               <span className="text-sm">Sku: </span>
               <span className="font-medium">
-                {props.productDetails.description.desc_3.sku}
+                {productDetails.description.desc_3.sku}
               </span>
             </p>
 
             <p>
               <span className="text-sm">Release date: </span>
               <span className="font-medium">
-                {props.productDetails.description.desc_3.release_date}
+                {productDetails.description.desc_3.release_date}
               </span>
             </p>
           </div>

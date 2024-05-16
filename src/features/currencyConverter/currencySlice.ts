@@ -18,11 +18,7 @@ const currencySlice = createSlice({
     setCurrency: (state, action: PayloadAction<string>) => {
       state.toSelectedCurrency = action.payload;
 
-      console.log(state.toSelectedCurrency);
-      localStorage.setItem(
-        "selected-currency",
-        JSON.stringify(state.toSelectedCurrency),
-      );
+      localStorage.setItem("selected-currency", state.toSelectedCurrency);
     },
   },
 });

@@ -2,8 +2,9 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { setRemoveItemFromCart } from "./cartSlice";
 import QuantityControlPanel from "../../components/QuantityControlPanel";
+import Price from "../currencyConverter/Price";
 
-interface props {
+interface CartItemProps {
   cartItem: {
     name: string;
     image: string;
@@ -15,19 +16,19 @@ interface props {
   };
 }
 
-const CartItem: React.FC<props> = (props) => {
+const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
   const dispatch = useDispatch();
 
   function handleRemoveItemFromCart() {
-    dispatch(setRemoveItemFromCart(props.cartItem));
+    dispatch(setRemoveItemFromCart(cartItem));
   }
 
   return (
-    <li key={props.cartItem.id} className="flex py-6">
+    <li key={cartItem.id} className="flex py-6">
       <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-md border border-gray-200">
         <img
-          src={props.cartItem.image}
-          alt={props.cartItem.name}
+          src={cartItem.image}
+          alt={cartItem.name}
           className="object-cover object-center"
         />
       </div>
@@ -35,23 +36,27 @@ const CartItem: React.FC<props> = (props) => {
       <div className="ml-4 flex flex-1 flex-col py-0.5">
         <div>
           <div className="flex justify-between text-base font-medium text-gray-900">
-            <h3>{props.cartItem.name}</h3>
+            <h3>{cartItem.name}</h3>
             <p className="ml-4">
-              €{props.cartItem.price * props.cartItem.cartQuantity}
+              {/* €{cartItem.price * cartItem.cartQuantity} */}
+              <Price
+                className=""
+                price={cartItem.price * cartItem.cartQuantity}
+              />
             </p>
           </div>
           <p className="mt-1 text-sm text-gray-500">
             Price / Qty:
             <span className="font-medium text-gray-600">
-              {" "}
-              €{props.cartItem.price}
+              {/* €{cartItem.price} */}
+              <Price className="ml-1" price={cartItem.price} />
             </span>
           </p>
         </div>
         <div className="flex flex-1 items-end justify-between text-sm">
           <div className="w-24">
             <QuantityControlPanel
-              product={props.cartItem}
+              product={cartItem}
               color="text-indigo-500 hover:text-indigo-600"
             />
           </div>

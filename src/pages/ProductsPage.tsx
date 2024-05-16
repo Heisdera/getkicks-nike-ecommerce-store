@@ -38,15 +38,15 @@ const ProductsPage: React.FC = () => {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-6 sm:px-6 md:max-w-[1684px] lg:px-8">
-      <div className="hide-scrollbar space-x-2 overflow-x-scroll scroll-smooth whitespace-nowrap pb-6 pt-3 sm:space-x-3">
+    <div className="mx-auto max-w-3xl px-3 py-6 sm:px-6 md:max-w-[1684px] lg:px-8">
+      <div className="hide-scrollbar space-x-2 overflow-x-scroll scroll-smooth whitespace-nowrap px-[2px] pb-6 pt-3 sm:space-x-3">
         {collectionsWithActiveFirst.map((collection, i) => (
           <NavLink
             to={`/collections/${collection.link}`}
             key={i}
             type="button"
             className={({ isActive }) =>
-              `${isActive ? "border border-gray-100 bg-gray-100" : "border border-gray-200 transition-colors duration-500 md:hover:border-black"} rounded-md px-2.5 py-2`
+              `${isActive ? "border border-gray-100 bg-gray-100" : "border border-gray-200 transition-colors duration-500 md:hover:border-black"} rounded-md px-2.5 py-2 text-sm xl:text-base`
             }
           >
             {collection.text}

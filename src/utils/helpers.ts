@@ -32,7 +32,7 @@ export function convertPrice(
   const currency = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: selectedCurrency,
-    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
   });
 
   const conversionRate = rates.conversion_rates[selectedCurrency];
