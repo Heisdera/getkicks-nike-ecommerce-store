@@ -1,21 +1,5 @@
 {
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
-  ],
-
- 
-  "builds": [
-    {
-      "src": "src/index.ts",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/src/index.ts"
-    }
   ]
-
-
 }
