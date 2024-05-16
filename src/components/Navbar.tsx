@@ -418,7 +418,7 @@ const Navbar: React.FC = () => {
                 <SelectTrigger className="min-w-[5rem] border-0 focus:ring-offset-0 lg:w-[110px]">
                   <SelectValue defaultChecked />
                 </SelectTrigger>
-                <SelectContent className="min-w-[5rem]">
+                <SelectContent className="min-w-[5rem] z-50">
                   <SelectGroup>
                     {currencies.map((currency) => (
                       <SelectItem
