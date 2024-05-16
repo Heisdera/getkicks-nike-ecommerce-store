@@ -4,7 +4,7 @@ import {
   selectCartItems,
   setIncreaseItemQTY,
   setDecreaseItemQTY,
-} from "../features/cart/CartSlice";
+} from "../features/cart/cartSlice";
 import { product } from "../utils/types";
 import { PiMinusSquareFill, PiPlusSquareFill } from "react-icons/pi";
 

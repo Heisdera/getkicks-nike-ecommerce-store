@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setRemoveItemFromWishlist } from "./WishlistSlice";
+import { setRemoveItemFromWishlist } from "./wishlistSlice";
 import { HiHeart } from "react-icons/hi";
 import _ from "lodash";
 
@@ -47,7 +47,11 @@ const WishlistItem: React.FC<props> = (props) => {
         className="flex items-center justify-between gap-4 pt-3 leading-tight"
       >
         <h3 className="text-sm font-medium text-gray-700">
-          {_.truncate(props.wishlistItem.name, { length: 20, separator: " ", omission: "..." })}
+          {_.truncate(props.wishlistItem.name, {
+            length: 20,
+            separator: " ",
+            omission: "...",
+          })}
         </h3>
 
         <p className="font-semibold text-gray-900">

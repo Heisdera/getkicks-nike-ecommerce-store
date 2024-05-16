@@ -22,7 +22,7 @@ const initialState: {
     : [],
 };
 
-const CartSlice = createSlice({
+const cartSlice = createSlice({
   initialState,
   name: "cart",
   reducers: {
@@ -137,6 +137,6 @@ export const {
   setIncreaseItemQTY,
   setDecreaseItemQTY,
   setRemoveItemFromCart,
-} = CartSlice.actions;
+} = cartSlice.actions;
 
-export default CartSlice.reducer;
+export default cartSlice.reducer;

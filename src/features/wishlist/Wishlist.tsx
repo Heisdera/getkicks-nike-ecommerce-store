@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectWishlistItems } from "./WishlistSlice";
+import { selectWishlistItems } from "./wishlistSlice";
 import WishlistItem from "./WishlistItem";
 
 const Wishlist: React.FC = () => {

@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import CartSlice from "../features/cart/CartSlice";
-import WishlistSlice from "../features/wishlist/WishlistSlice";
+import cartSlice from "../features/cart/cartSlice";
+import wishlistSlice from "../features/wishlist/wishlistSlice";
+import currencySlice from "../features/currencyConverter/currencySlice";
 
 const rootReducer = combineReducers({
-  cart: CartSlice,
-  wishlist: WishlistSlice,
+  currency: currencySlice,
+  wishlist: wishlistSlice,
+  cart: cartSlice,
 });
 
 const Store = configureStore({

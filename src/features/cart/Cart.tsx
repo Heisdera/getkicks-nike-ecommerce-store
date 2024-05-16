@@ -5,7 +5,7 @@ import {
   selectCartItems,
   selectCartTotalAmount,
   setClearCartItems,
-} from "./CartSlice";
+} from "./cartSlice";
 import CartItem from "./CartItem";
 import PageTitle from "../../components/PageTitle";
 import { GoTrash } from "react-icons/go";

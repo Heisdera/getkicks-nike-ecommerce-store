@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { setRemoveItemFromCart } from "./CartSlice";
+import { setRemoveItemFromCart } from "./cartSlice";
 import QuantityControlPanel from "../../components/QuantityControlPanel";
 
 interface props {
@@ -68,6 +68,5 @@ const CartItem: React.FC<props> = (props) => {
     </li>
   );
 };
-
 
 export default CartItem;

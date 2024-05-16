@@ -21,7 +21,7 @@ const initialState: {
     : [],
 };
 
-const WishlistSlice = createSlice({
+const wishlistSlice = createSlice({
   initialState,
   name: "wishlist",
   reducers: {
@@ -117,6 +117,6 @@ export const {
   setRemoveItemFromWishlist,
   setToggleWishlistItem,
   setClearWishlistItems,
-} = WishlistSlice.actions;
+} = wishlistSlice.actions;
 
-export default WishlistSlice.reducer;
+export default wishlistSlice.reducer;

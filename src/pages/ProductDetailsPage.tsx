@@ -12,11 +12,19 @@ const ProductDetailsPage: React.FC = () => {
   if (isLoading) return <ProductDetailsSkeleton />;
 
   if (error)
-    return <div className="text-red-600 text-4xl mx-auto max-w-screen-xl px-4">Error fetching data</div>;
+    return (
+      <div className="mx-auto max-w-screen-xl px-4 text-4xl text-red-600">
+        Error fetching data
+      </div>
+    );
 
   return (
-    <div>
-      <button className="ml-3 mt-1 flex items-end gap-1 text-lg font-medium text-gray-500 hover:text-indigo-500" onClick={() => navigate(-1)}>
+    <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
+      <button
+        type="button"
+        className="mt-1 flex items-end gap-1 text-lg font-medium text-gray-500 hover:text-indigo-500"
+        onClick={() => navigate(-1)}
+      >
         <MdOutlineKeyboardBackspace size={24} />
         Back
       </button>

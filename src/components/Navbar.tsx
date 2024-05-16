@@ -5,24 +5,20 @@ import { motion } from "framer-motion";
 import { HiOutlineHeart } from "react-icons/hi";
 import { HiMagnifyingGlass, HiOutlineShoppingBag } from "react-icons/hi2";
 import { useSelector } from "react-redux";
-import { selectCartTotalQTY } from "../features/cart/CartSlice";
-import { selectWishlistTotalItems } from "../features/wishlist/WishlistSlice";
-// import GetKicksLogo from "../assets/getKicks-logo.svg";
+import { selectCartTotalQTY } from "../features/cart/cartSlice";
+import { selectWishlistTotalItems } from "../features/wishlist/wishlistSlice";
 
-function pathVariant(customDelay: number) {
-  return {
-    hidden: { opacity: 0, pathLength: 0 },
-    visible: {
-      opacity: 1,
-      pathLength: 1,
-      transition: {
-        duration: 1,
-        ease: "easeInOut",
-        delay: customDelay,
-      },
-    },
-  };
-}
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { setCurrency } from "../features/currencyConverter/currencySlice";
+import { useDispatch } from "react-redux";
+import { pathVariant } from "../utils/helpers";
 
 const navigation = {
   categories: [
@@ -121,19 +117,50 @@ const navigation = {
   ],
 };
 
+const currencies = [
+  {
+    currencyCode2: "eu",
+    currencyCode3: "EUR",
+  },
+  {
+    currencyCode2: "us",
+    currencyCode3: "USD",
+  },
+  {
+    currencyCode2: "gb",
+    currencyCode3: "GBP",
+  },
+  {
+    currencyCode2: "jp",
+    currencyCode3: "JPY",
+  },
+  {
+    currencyCode2: "cn",
+    currencyCode3: "CNY",
+  },
+  {
+    currencyCode2: "ng",
+    currencyCode3: "NGN",
+  },
+];
+
 const Navbar: React.FC = () => {
+  const dispatch = useDispatch();
   const cartTotalItems = useSelector(selectCartTotalQTY);
   const wishlistTotalItems = useSelector(selectWishlistTotalItems);
+
+  function handleCurrencyChange(value: string): void {
+    dispatch(setCurrency(value));
+  }
 
   return (
     <nav aria-label="Top" className="px-3.5 sm:px-6 lg:px-8">
       <div className="border-b border-gray-200">
         <div className="flex h-16 items-center">
-          {/* Logo */}
-          <div className="flex ml-1 mt-1">
+          {/* GetKicks Logo */}
+          <div className="ml-1 mt-1 flex">
             <Link to="/">
               {/* <img className="ml-1 mt-1" src={GetKicksLogo} alt="logo" /> */}
-
               <svg
                 version="1.0"
                 xmlns="http://www.w3.org/2000/svg"
@@ -381,26 +408,41 @@ const Navbar: React.FC = () => {
 
             {/* Currency */}
             <div className="hidden lg:ml-8 lg:!flex">
-              <a
-                href="#"
-                className="flex items-center text-gray-700 hover:text-gray-800"
+              <Select
+                defaultValue="EUR"
+                onValueChange={(value) => handleCurrencyChange(value)}
               >
-                <img
-                  src="https://tailwindui.com/img/flags/flag-canada.svg"
-                  alt=""
-                  className="block h-auto w-5 flex-shrink-0"
-                />
-                <span className="ml-3 block text-sm font-medium">CAD</span>
-                <span className="sr-only">, change currency</span>
-              </a>
+                <SelectTrigger className="w-[110px] border-0 focus:ring-1 focus:ring-offset-1">
+                  <SelectValue defaultChecked />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    {currencies.map((currency) => (
+                      <SelectItem
+                        key={currency.currencyCode2}
+                        value={currency.currencyCode3}
+                        className="text-xs"
+                      >
+                        <img
+                          src={`https://flagcdn.com/w160/${currency.currencyCode2}.webp`}
+                          alt={currency.currencyCode3}
+                          className={`mr-2 inline-block h-[18px] w-7 ${currency.currencyCode3 === "EUR" ? "brightness-125 contrast-150" : "contrast-105 brightness-105"}`}
+                        />
+                        <span>{currency.currencyCode3}</span>
+                        <span className="sr-only">, change currency</span>
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
             </div>
 
             {/* Search */}
             <div className="mx-1 flex lg:ml-6">
-              <a href="#" className="p-2 text-gray-600 hover:text-gray-500">
+              <div className="p-2 text-gray-600 hover:text-gray-500">
                 <span className="sr-only">Search</span>
                 <HiMagnifyingGlass className="h-6 w-6" aria-hidden="true" />
-              </a>
+              </div>
             </div>
 
             {/* Wishlist */}
