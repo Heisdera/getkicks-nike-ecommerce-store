@@ -1,20 +1,19 @@
-export interface product {
+export interface Product {
   name: string;
   image: string;
   id: string;
   price_string: string;
   currency: string;
   price: number;
-  // favourite?: number;
-  // cartQuantity?: number;
 }
 
-export interface productDetails {
+export interface ProductDetails {
   name: string;
   id: string;
   price_string: string;
   currency: string;
   price: number;
+  image: string;
   images: string[];
   description: {
     color: string[];

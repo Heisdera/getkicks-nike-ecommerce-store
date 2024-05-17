@@ -5,50 +5,50 @@ import {
   setIncreaseItemQTY,
   setDecreaseItemQTY,
 } from "../features/cart/cartSlice";
-import { product } from "../utils/types";
+import { Product } from "../utils/types";
 import { PiMinusSquareFill, PiPlusSquareFill } from "react-icons/pi";
 
-interface props {
-  product: product;
+interface Props {
+  product: Product;
   color: string;
 }
 
-const QuantityControlPanel: React.FC<props> = (props) => {
+const QuantityControlPanel: React.FC<Props> = ({ product, color }) => {
   const dispatch = useDispatch();
 
   const cartItems = useSelector(selectCartItems);
 
-  function handleIncreaseItemQTY(item: product) {
+  function handleIncreaseItemQTY(item: Product) {
     dispatch(setIncreaseItemQTY(item));
   }
 
-  function handleDecreaseItemQTY(item: product) {
+  function handleDecreaseItemQTY(item: Product) {
     dispatch(setDecreaseItemQTY(item));
   }
 
   return (
     <div className="flex items-center justify-between">
       <button
-        className={`rounded-md ${props.color} transition-all duration-200`}
+        className={`rounded-md ${color} transition-all duration-200`}
         title="decrease quantity"
         type="button"
-        onClick={() => handleDecreaseItemQTY(props.product)}
+        onClick={() => handleDecreaseItemQTY(product)}
       >
         <PiMinusSquareFill size={32} />
       </button>
 
       <span>
         {
-          cartItems[cartItems.findIndex((item) => item.id === props.product.id)]
+          cartItems[cartItems.findIndex((item) => item.id === product.id)]
             .cartQuantity
         }
       </span>
 
       <button
-        className={`rounded-md ${props.color} transition-all duration-200`}
+        className={`rounded-md ${color} transition-all duration-200`}
         type="button"
         title="increase quantity"
-        onClick={() => handleIncreaseItemQTY(props.product)}
+        onClick={() => handleIncreaseItemQTY(product)}
       >
         <PiPlusSquareFill size={32} />
       </button>

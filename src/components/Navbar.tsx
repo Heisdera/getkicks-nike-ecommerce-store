@@ -1,151 +1,22 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { Popover, Transition } from "@headlessui/react";
-import { motion } from "framer-motion";
 import { HiOutlineHeart } from "react-icons/hi";
 import { HiMagnifyingGlass, HiOutlineShoppingBag } from "react-icons/hi2";
-import { useSelector } from "react-redux";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { motion } from "framer-motion";
+
 import { selectCartTotalQTY } from "../features/cart/cartSlice";
 import { selectWishlistTotalItems } from "../features/wishlist/wishlistSlice";
-
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import {
   selectSelectedCurrency,
   setCurrency,
 } from "../features/currencyConverter/currencySlice";
-import { useDispatch } from "react-redux";
 import { pathVariant } from "../utils/helpers";
-
-const navigation = {
-  categories: [
-    {
-      id: "men",
-      name: "Men",
-      featured: [
-        {
-          name: "New Arrivals",
-          href: "#",
-          imageSrc:
-            "https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg",
-          imageAlt:
-            "Drawstring top with elastic loop closure and textured interior padding.",
-        },
-        {
-          name: "Top Trend",
-          href: "#",
-          imageSrc:
-            "https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg",
-          imageAlt:
-            "Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.",
-        },
-      ],
-      sections: [
-        {
-          id: "collections",
-          name: "Collections",
-          items: [
-            { name: "All Nikes", href: "nike" },
-            { name: "Nike Dunk", href: "nike-dunk" },
-            { name: "Nike Air Force 1", href: "nike-air-force-1" },
-            { name: "Nike Air Max", href: "nike-air-max" },
-            { name: "Nike x Travis Scott", href: "travis-scott-cactus-jack" },
-            { name: "Nike x Sacai", href: "nike-sacai" },
-            { name: "Nike x Off-White", href: "nike-off-white" },
-            { name: "Nike x Jacquemus", href: "nike-jacquemus" },
-            { name: "Nike x NOCTA", href: "nike-nocta" },
-            { name: "Nike Zoom Vomero 5", href: "nike-zoom-vomero-5" },
-            { name: "Nike x Supreme", href: "supreme-nike" },
-            { name: "Nike Cortez", href: "nike-cortez" },
-            { name: "Nike Blazer", href: "nike-blazer" },
-            { name: "Autres Nike", href: "autres-modeles-nike" },
-          ],
-        },
-      ],
-    },
-    {
-      id: "women",
-      name: "Women",
-      featured: [
-        {
-          name: "New Arrivals",
-          href: "#",
-          imageSrc:
-            "https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg",
-          imageAlt:
-            "Models sitting back to back, wearing Basic Tee in black and bone.",
-        },
-        {
-          name: "Top Trend",
-          href: "#",
-          imageSrc:
-            "https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg",
-          imageAlt:
-            "Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.",
-        },
-      ],
-      sections: [
-        {
-          id: "collections",
-          name: "Collections",
-          items: [
-            { name: "All Nikes", href: "nike" },
-            { name: "Nike Dunk", href: "nike-dunk" },
-            { name: "Nike Air Force 1", href: "nike-air-force-1" },
-            { name: "Nike Air Max", href: "nike-air-max" },
-            { name: "Nike x Travis Scott", href: "travis-scott-cactus-jack" },
-            { name: "Nike x Sacai", href: "nike-sacai" },
-            { name: "Nike x Off-White", href: "nike-off-white" },
-            { name: "Nike x Jacquemus", href: "nike-jacquemus" },
-            { name: "Nike x NOCTA", href: "nike-nocta" },
-            { name: "Nike Zoom Vomero 5", href: "nike-zoom-vomero-5" },
-            { name: "Nike x Supreme", href: "supreme-nike" },
-            { name: "Nike Cortez", href: "nike-cortez" },
-            { name: "Nike Blazer", href: "nike-blazer" },
-            { name: "Autres Nike", href: "autres-modeles-nike" },
-          ],
-        },
-      ],
-    },
-  ],
-  pages: [
-    { name: "Company", href: "#" },
-    { name: "Stores", href: "#" },
-  ],
-};
-
-const currencies = [
-  {
-    currencyCode2: "eu",
-    currencyCode3: "EUR",
-  },
-  {
-    currencyCode2: "us",
-    currencyCode3: "USD",
-  },
-  {
-    currencyCode2: "gb",
-    currencyCode3: "GBP",
-  },
-  {
-    currencyCode2: "jp",
-    currencyCode3: "JPY",
-  },
-  {
-    currencyCode2: "cn",
-    currencyCode3: "CNY",
-  },
-  {
-    currencyCode2: "ng",
-    currencyCode3: "NGN",
-  },
-];
+import { currencies, navigation } from "../data/data";
 
 const Navbar: React.FC = () => {
   const dispatch = useDispatch();
@@ -153,12 +24,12 @@ const Navbar: React.FC = () => {
   const cartTotalItems = useSelector(selectCartTotalQTY);
   const wishlistTotalItems = useSelector(selectWishlistTotalItems);
 
-  function handleCurrencyChange(value: string): void {
-    dispatch(setCurrency(value));
+  function handleCurrencyChange(e: SelectChangeEvent) {
+    dispatch(setCurrency(e.target.value));
   }
 
   return (
-    <nav aria-label="Top" className="px-3 sm:px-6 lg:px-8 w-full">
+    <nav aria-label="Top" className="w-full px-3 sm:px-6 lg:px-8">
       <div className="border-b border-gray-200">
         <div className="flex h-16 items-center">
           {/* GetKicks Logo */}
@@ -324,8 +195,8 @@ const Navbar: React.FC = () => {
                                           className="object-cover object-center"
                                         />
                                       </div>
-                                      <a
-                                        href={item.href}
+                                      <Link
+                                        to={`products/${item.href}`}
                                         className="mt-6 block font-medium text-gray-900"
                                       >
                                         <span
@@ -333,7 +204,7 @@ const Navbar: React.FC = () => {
                                           aria-hidden="true"
                                         />
                                         {item.name}
-                                      </a>
+                                      </Link>
                                       <p aria-hidden="true" className="mt-1">
                                         Shop now
                                       </p>
@@ -411,33 +282,75 @@ const Navbar: React.FC = () => {
 
             {/* Currency */}
             <div className="lg:ml-8 lg:!flex">
-              <Select
-                defaultValue={selectedCurrency}
-                onValueChange={(value) => handleCurrencyChange(value)}
+              <FormControl
+                sx={{
+                  width: 90,
+                  mr: 0.5,
+
+                  "@media (min-width: 1024px)": {
+                    minWidth: 115,
+                    mr: 0,
+                  },
+                }}
+                size="small"
               >
-                <SelectTrigger className="min-w-[5rem] border-0 focus:ring-offset-0 lg:w-[110px]">
-                  <SelectValue defaultChecked />
-                </SelectTrigger>
-                <SelectContent className="min-w-[5rem] z-50">
-                  <SelectGroup>
-                    {currencies.map((currency) => (
-                      <SelectItem
-                        key={currency.currencyCode2}
-                        value={currency.currencyCode3}
-                        className="flex gap-2 text-xs"
-                      >
+                <Select
+                  value={selectedCurrency}
+                  onChange={handleCurrencyChange}
+                  displayEmpty
+                  inputProps={{ "aria-label": "Without label" }}
+                  sx={{
+                    fontSize: 12,
+
+                    ".MuiOutlinedInput-notchedOutline": {
+                      borderWidth: "0",
+                    },
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "black",
+                    },
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "black",
+                    },
+                    "& .MuiSvgIcon-root": {
+                      color: "black", // Change the color of the dropdown arrow
+                      display: "none", // Hide the arrow by default
+
+                      "@media (min-width: 1024px)": {
+                        display: "block", // Show the arrow on desktop
+                      },
+                    },
+                  }}
+                  MenuProps={{
+                    PaperProps: {
+                      sx: {
+                        mt: 0.5,
+
+                        "& .MuiMenuItem-root": {
+                          py: 0,
+                          minHeight: 40,
+                        },
+                      },
+                    },
+                  }}
+                >
+                  {currencies.map((currency) => (
+                    <MenuItem
+                      key={currency.currencyCode2}
+                      value={currency.currencyCode3}
+                    >
+                      <div className="flex items-center gap-2 text-xs">
                         <img
                           src={`https://flagcdn.com/w160/${currency.currencyCode2}.webp`}
                           alt={currency.currencyCode3}
-                          className={`mr-2 inline-block h-[18px] w-7 ${currency.currencyCode3 === "EUR" ? "brightness-125 contrast-150" : "contrast-105 brightness-105"}`}
+                          className={`inline-block h-[18px] w-7 ${currency.currencyCode3 === "EUR" ? "brightness-125 contrast-150" : "contrast-105 brightness-105"}`}
                         />
                         <span>{currency.currencyCode3}</span>
                         <span className="sr-only">, change currency</span>
-                      </SelectItem>
-                    ))}
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
+                      </div>
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </div>
 
             {/* Search */}

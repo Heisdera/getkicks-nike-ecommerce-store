@@ -14,7 +14,7 @@ const ProductDetailsPage: React.FC = () => {
   if (error)
     return (
       <div className="mx-auto max-w-screen-xl px-4 text-4xl text-red-600">
-        Error fetching data
+        {error.message}
       </div>
     );
 
@@ -22,7 +22,7 @@ const ProductDetailsPage: React.FC = () => {
     <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
       <button
         type="button"
-        className="mt-1 flex items-end gap-1 text-lg font-medium text-gray-500 hover:text-indigo-500"
+        className="mt-4 flex items-end gap-1 text-lg font-medium text-gray-600 hover:text-indigo-500"
         onClick={() => navigate(-1)}
       >
         <MdOutlineKeyboardBackspace size={24} />

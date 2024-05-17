@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { selectCartItems, setAddItemToCart } from "../cart/cartSlice";
-import { productDetails } from "../../utils/types";
+import { ProductDetails as ProductDetailsType } from "../../utils/types";
 import { useSelector } from "react-redux";
 import {
   selectWishlistItems,
@@ -38,11 +38,11 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productDetails }) => {
   const wishlistItems = useSelector(selectWishlistItems);
   const cartItems = useSelector(selectCartItems);
 
-  function handleAddItemToCart(item: productDetails) {
+  function handleAddItemToCart(item: ProductDetailsType) {
     dispatch(setAddItemToCart(item));
   }
 
-  function handleToggleWishlistState(item: productDetails) {
+  function handleToggleWishlistState(item: ProductDetailsType) {
     dispatch(setToggleWishlistItem(item));
   }
 
@@ -68,7 +68,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productDetails }) => {
               onClick={() => {
                 handleChangeDisplayImageIndex(i);
               }}
-              className={`${i === displayImageIndex && "ring-1 ring-gray-500"} h-fit cursor-pointer rounded-md bg-[#f6f6f6] shadow transition-all duration-300 hover:ring-1 hover:ring-gray-500`}
+              className={`${i === displayImageIndex && "ring-1 ring-gray-500"} ${image === "" && "hidden"} h-fit cursor-pointer rounded-md bg-[#f6f6f6] shadow transition-all duration-300 hover:ring-1 hover:ring-gray-500`}
             >
               <img className="w-full py-2" src={image} alt="" />
             </div>
@@ -85,72 +85,79 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productDetails }) => {
               <Price className="" price={productDetails.price} />
             </p>
 
-            <div className="mt-2 flex items-center gap-2 sm:mt-0">
-              <div className="flex items-center gap-1">
-                <svg
-                  className="h-4 w-4 text-yellow-300"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z" />
-                </svg>
-                <svg
-                  className="h-4 w-4 text-yellow-300"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z" />
-                </svg>
-                <svg
-                  className="h-4 w-4 text-yellow-300"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z" />
-                </svg>
-                <svg
-                  className="h-4 w-4 text-yellow-300"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z" />
-                </svg>
-                <svg
-                  className="h-4 w-4 text-yellow-300"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z" />
-                </svg>
+            <div className="mt-2 flex items-center justify-between sm:mt-0 lg:w-[90%]">
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1">
+                  <svg
+                    className="h-4 w-4 text-yellow-300"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z" />
+                  </svg>
+                  <svg
+                    className="h-4 w-4 text-yellow-300"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z" />
+                  </svg>
+                  <svg
+                    className="h-4 w-4 text-yellow-300"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z" />
+                  </svg>
+                  <svg
+                    className="h-4 w-4 text-yellow-300"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z" />
+                  </svg>
+                  <svg
+                    className="h-4 w-4 text-yellow-300"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z" />
+                  </svg>
+                </div>
+                <p className="text-sm font-medium leading-none text-indigo-500">
+                  (5.0)
+                </p>
+                <p className="text-sm font-medium leading-none text-gray-900 underline hover:no-underline">
+                  345 Reviews
+                </p>
               </div>
-              <p className="text-sm font-medium leading-none text-indigo-500">
-                (5.0)
-              </p>
+
               <a
-                href="#"
-                className="text-sm font-medium leading-none text-gray-900 underline hover:no-underline"
+                href={`https://wethenew.com/en/products/${productDetails.id}`}
+                target="_blank"
+                className="justify-self-end text-sm font-medium leading-none text-indigo-600 underline hover:no-underline"
               >
-                345 Reviews
+                Buy now
               </a>
             </div>
           </div>

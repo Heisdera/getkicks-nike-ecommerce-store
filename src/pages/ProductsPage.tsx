@@ -2,22 +2,7 @@ import React from "react";
 import Products from "../features/products/Products";
 import PageTitle from "../components/PageTitle";
 import { NavLink, useParams } from "react-router-dom";
-
-const collections: { text: string; link: string }[] = [
-  { text: "Nike Dunk", link: "nike-dunk" },
-  { text: "Nike Air Force 1", link: "nike-air-force-1" },
-  { text: "Nike Air Max", link: "nike-air-max" },
-  { text: "Nike x Travis Scott", link: "travis-scott-cactus-jack" },
-  { text: "Nike x Sacai", link: "nike-sacai" },
-  { text: "Nike x Off-White", link: "nike-off-white" },
-  { text: "Nike x Jacquemus", link: "nike-jacquemus" },
-  { text: "Nike x NOCTA", link: "nike-nocta" },
-  { text: "Nike Zoom Vomero 5", link: "nike-zoom-vomero-5" },
-  { text: "Nike x Supreme", link: "supreme-nike" },
-  { text: "Nike Cortez", link: "nike-cortez" },
-  { text: "Nike Blazer", link: "nike-blazer" },
-  { text: "Autres Nike", link: "autres-modeles-nike" },
-];
+import { collections } from "../data/data";
 
 const ProductsPage: React.FC = () => {
   const { collection } = useParams();
@@ -55,7 +40,13 @@ const ProductsPage: React.FC = () => {
       </div>
 
       {activeIndex !== -1 ? (
-        <PageTitle title={collections[activeIndex].text} />
+        <PageTitle
+          title={
+            collections[activeIndex].text === "All"
+              ? "Nike"
+              : collections[activeIndex].text
+          }
+        />
       ) : (
         <PageTitle title="Nike" />
       )}

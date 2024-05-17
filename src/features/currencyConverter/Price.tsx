@@ -12,9 +12,11 @@ interface Props {
 const Price: React.FC<Props> = ({ className, price }) => {
   const selectedCurrency = useSelector(selectSelectedCurrency);
   const baseCurrency = useSelector(selectBaseCurrency);
-  const { isLoading, data: rates } = useConversionRates(baseCurrency);
+  const { isLoading, data: rates, error } = useConversionRates(baseCurrency);
 
   if (isLoading) return <span className="animate-pulse">Loading</span>;
+  
+  if (error) return <span className="text-red">reload</span>;
 
   const convertedPrice = convertPrice(price, rates, selectedCurrency);
 

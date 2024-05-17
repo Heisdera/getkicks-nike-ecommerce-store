@@ -7,7 +7,7 @@ import {
   setToggleWishlistItem,
 } from "../wishlist/wishlistSlice.ts";
 import { HiHeart, HiOutlineHeart } from "react-icons/hi";
-import { product } from "../../utils/types";
+import { Product } from "../../utils/types";
 import QuantityControlPanel from "../../components/QuantityControlPanel";
 import _ from "lodash";
 import { useWindowWidth } from "../../hooks/useWindowWidth.ts";
@@ -18,11 +18,11 @@ import PaginationItem from "@mui/material/PaginationItem";
 import { HiShoppingBag } from "react-icons/hi2";
 import Price from "../currencyConverter/Price.tsx";
 
-interface props {
+interface Props {
   collection: string | undefined;
 }
 
-const Products: React.FC<props> = ({ collection }) => {
+const Products: React.FC<Props> = ({ collection }) => {
   const { isSmallScreen, isMobile, isTablet, isDesktop, isWideScreen } =
     useWindowWidth();
   const { isLoading, data, error, page, totalPages } = usePagination();
@@ -30,12 +30,16 @@ const Products: React.FC<props> = ({ collection }) => {
   const wishlistItems = useSelector(selectWishlistItems);
   const cartItems = useSelector(selectCartItems);
 
-  function handleAddItemToCart(item: product) {
+  function handleAddItemToCart(item: Product) {
     dispatch(setAddItemToCart(item));
+
+    console.log(item);
   }
 
-  function handleToggleWishlistState(item: product) {
+  function handleToggleWishlistState(item: Product) {
     dispatch(setToggleWishlistItem(item));
+
+    console.log(item);
   }
 
   function handleTruncateProductName(productName: string, length: number) {
@@ -54,7 +58,7 @@ const Products: React.FC<props> = ({ collection }) => {
   return (
     <>
       <div className="grid grid-cols-2 gap-x-3 gap-y-6 sm:gap-x-4 md:grid-cols-4 lg:gap-x-4">
-        {data?.products.map((product: product) => (
+        {data?.products.map((product: Product) => (
           <div
             key={product.id}
             className="group relative h-fit cursor-pointer rounded-xl border-[0.5px] bg-white p-2.5 md:p-2 lg:p-3"
@@ -100,7 +104,7 @@ const Products: React.FC<props> = ({ collection }) => {
 
             <Link
               to={`/products/${product.id}`}
-              className="grid grid-cols-1 py-2"
+              className="grid grid-cols-1 gap-[2px] py-2"
             >
               <h3 className="text-xs font-medium text-gray-500 min-[360px]:text-sm sm:text-base">
                 {isWideScreen
