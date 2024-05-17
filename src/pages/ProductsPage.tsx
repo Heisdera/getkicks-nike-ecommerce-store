@@ -3,22 +3,28 @@ import Products from "../features/products/Products";
 import PageTitle from "../components/PageTitle";
 import { NavLink, useParams } from "react-router-dom";
 import { collections } from "../data/data";
+import { usePagination } from "@/hooks/usePagination";
 
 const ProductsPage: React.FC = () => {
+  const { data } = usePagination();
   const { collection } = useParams();
+
   // console.log(collection);
 
   const collectionsWithActiveFirst = [...collections];
 
-  const activeIndex = collections.findIndex((collection) => {
-    const currentPath = window.location.pathname;
-    return currentPath.includes(collection.link);
-  });
+  const activeCollectionIndex = collections.findIndex(
+    (item) => item.link === collection,
+  );
 
-  // console.log(activeIndex);
+  // console.log(activeCollectionIndex);
 
-  if (activeIndex !== -1) {
-    const activeCollection = collectionsWithActiveFirst.splice(activeIndex, 1);
+  if (activeCollectionIndex !== -1) {
+    const activeCollection = collectionsWithActiveFirst.splice(
+      activeCollectionIndex,
+      1,
+    );
+
     collectionsWithActiveFirst.unshift(activeCollection[0]);
   }
 
@@ -39,17 +45,21 @@ const ProductsPage: React.FC = () => {
         ))}
       </div>
 
-      {activeIndex !== -1 ? (
+      <div className="flex items-center justify-between">
         <PageTitle
           title={
-            collections[activeIndex].text === "All"
+            collections[activeCollectionIndex].text === "All"
               ? "Nike"
-              : collections[activeIndex].text
+              : collections[activeCollectionIndex].text
           }
         />
-      ) : (
-        <PageTitle title="Nike" />
-      )}
+        <p className="mr-2 space-x-1 text-sm">
+          <span className="font-medium text-gray-700">
+            {data?.total_results}
+          </span>
+          <span className="text-gray-500">Results</span>
+        </p>
+      </div>
 
       <Products collection={collection} />
     </div>

@@ -1,8 +1,8 @@
-const API_KEY = "fb559c8619e7ba4daf04ba1a";
-const API_URL = `https://v6.exchangerate-api.com/v6/${API_KEY}`;
+const api_key = import.meta.env.VITE_EXCHANGERATE_API_KEY;
+const URL = `https://v6.exchangerate-api.com/v6/${api_key}`;
 
 export async function fetchConversionRates(baseCurrency: string) {
-  const response = await fetch(`${API_URL}/latest/${baseCurrency}`);
+  const response = await fetch(`${URL}/latest/${baseCurrency}`);
   const data = await response.json();
 
   if (!response.ok) {
