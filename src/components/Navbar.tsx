@@ -17,8 +17,10 @@ import {
 } from "../features/currencyConverter/currencySlice";
 import { pathVariant } from "../utils/helpers";
 import { currencies, navigation } from "../data/data";
+import useScroll from "@/hooks/useScroll";
 
 const Navbar: React.FC = () => {
+  const { isScrolling } = useScroll();
   const dispatch = useDispatch();
   const selectedCurrency = useSelector(selectSelectedCurrency);
   const cartTotalItems = useSelector(selectCartTotalQTY);
@@ -29,9 +31,11 @@ const Navbar: React.FC = () => {
   }
 
   return (
-    <nav aria-label="Top" className="w-full px-3 sm:px-6 lg:px-8">
-      <div className="border-b border-gray-200">
-        <div className="flex h-16 items-center">
+    <nav aria-label="Top" className="w-full px-2 sm:px-4 lg:px-8">
+      <div
+        className={`${isScrolling && "shadow-bottom"} border-b border-gray-200`}
+      >
+        <div className="relative z-50 flex h-16 items-center">
           {/* GetKicks Logo */}
           <div className="ml-1 mt-1 flex">
             <Link to="/collections/nike">

@@ -55,7 +55,7 @@ const ProductsPage: React.FC = () => {
               ></motion.span>
             )}
 
-            <span className="relative z-50">{item.text}</span>
+            <span className="relative z-30">{item.text}</span>
           </NavLink>
         ))}
       </div>
