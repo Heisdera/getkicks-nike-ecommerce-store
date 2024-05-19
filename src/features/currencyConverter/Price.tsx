@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { selectBaseCurrency, selectSelectedCurrency } from "./currencySlice";
 import { useConversionRates } from "@/hooks/useConversionRates";
 import { convertPrice } from "@/utils/helpers";
+import Skeleton from "react-loading-skeleton";
 
 interface Props {
   className: string;
@@ -14,8 +15,13 @@ const Price: React.FC<Props> = ({ className, price }) => {
   const baseCurrency = useSelector(selectBaseCurrency);
   const { isLoading, data: rates, error } = useConversionRates(baseCurrency);
 
-  if (isLoading) return <span className="animate-pulse">Loading</span>;
-  
+  if (isLoading)
+    return (
+      <span className="w-8 animate-pulse">
+        <Skeleton />
+      </span>
+    );
+
   if (error) return <span className="text-red">reload</span>;
 
   const convertedPrice = convertPrice(price, rates, selectedCurrency);

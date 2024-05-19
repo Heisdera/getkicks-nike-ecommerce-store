@@ -38,6 +38,10 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productDetails }) => {
   const wishlistItems = useSelector(selectWishlistItems);
   const cartItems = useSelector(selectCartItems);
 
+  const filteredImages = productDetails.images.filter(
+    (image) => image.trim() !== "",
+  );
+
   function handleAddItemToCart(item: ProductDetailsType) {
     dispatch(setAddItemToCart(item));
   }
@@ -57,20 +61,24 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productDetails }) => {
           <div className="col-span-3 rounded-md bg-[#f6f6f6] drop-shadow">
             <img
               className="w-full"
-              src={productDetails.images[displayImageIndex]}
+              src={filteredImages[displayImageIndex]}
               alt={productDetails.name}
             />
           </div>
 
-          {productDetails.images.map((image, i) => (
+          {filteredImages.map((image, i) => (
             <div
               key={i}
               onClick={() => {
                 handleChangeDisplayImageIndex(i);
               }}
-              className={`${i === displayImageIndex && "ring-1 ring-gray-500"} ${image === "" && "hidden"} h-fit cursor-pointer rounded-md bg-[#f6f6f6] shadow transition-all duration-300 hover:ring-1 hover:ring-gray-500`}
+              className={`${i === displayImageIndex && "ring-1 ring-gray-500"} h-fit cursor-pointer rounded-md bg-[#f6f6f6] shadow transition-all duration-200 hover:ring-1 hover:ring-gray-500`}
             >
-              <img className="w-full py-2" src={image} alt="" />
+              <img
+                className="w-full py-2"
+                src={image}
+                alt={productDetails.id}
+              />
             </div>
           ))}
         </div>

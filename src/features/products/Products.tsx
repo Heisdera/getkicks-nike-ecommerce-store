@@ -96,7 +96,7 @@ const Products: React.FC<Props> = ({ collection }) => {
               >
                 <HiOutlineHeart
                   strokeWidth={1}
-                  className="h-6 w-6 flex-shrink-0 text-gray-500 transition-colors duration-300 hover:text-red-500 md:h-5 md:w-5 lg:h-6 lg:w-6"
+                  className="h-6 w-6 flex-shrink-0 text-gray-500 transition-colors duration-200 hover:text-red-500 md:h-5 md:w-5 lg:h-6 lg:w-6"
                   aria-hidden="true"
                 />
               </button>

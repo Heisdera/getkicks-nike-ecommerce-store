@@ -8,7 +8,7 @@ interface CurrencyState {
 
 const initialState: CurrencyState = {
   fromBaseCurrency: "EUR",
-  toSelectedCurrency: localStorage.getItem("selected-currency") || "EUR",
+  toSelectedCurrency: localStorage.getItem("selected-currency") || "USD",
 };
 
 const currencySlice = createSlice({
