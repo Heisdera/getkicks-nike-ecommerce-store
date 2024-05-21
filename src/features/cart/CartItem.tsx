@@ -29,7 +29,7 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
         <img
           src={cartItem.image}
           alt={cartItem.name}
-          className="h-fit object-cover object-center"
+          className="block object-cover"
         />
       </div>
 

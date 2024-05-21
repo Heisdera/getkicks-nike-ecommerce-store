@@ -69,7 +69,7 @@ const Cart: React.FC = () => {
 
         <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
           <Link
-            to="/products"
+            to="/collections/nike"
             role="button"
             className="animate-bounce font-medium text-indigo-600 underline hover:text-indigo-500"
           >
