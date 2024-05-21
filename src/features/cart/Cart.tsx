@@ -1,15 +1,16 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { GoTrash } from "react-icons/go";
+
+import PageTitle from "@/components/PageTitle";
+import Price from "../currencyConverter/Price";
+import CartItem from "./CartItem";
 import {
   selectCartItems,
   selectCartTotalAmount,
   setClearCartItems,
 } from "./cartSlice";
-import CartItem from "./CartItem";
-import PageTitle from "../../components/PageTitle";
-import { GoTrash } from "react-icons/go";
-import Price from "../currencyConverter/Price";
 
 const Cart: React.FC = () => {
   const dispatch = useDispatch();

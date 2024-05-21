@@ -1,6 +1,6 @@
 import React from "react";
-import Wishlist from "../features/wishlist/Wishlist";
-import PageTitle from "../components/PageTitle";
+import Wishlist from "@/features/wishlist/Wishlist";
+import PageTitle from "@/components/PageTitle";
 
 const WishlistPage: React.FC = () => {
   return (

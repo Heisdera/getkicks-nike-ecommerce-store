@@ -1,8 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { setRemoveItemFromCart } from "./cartSlice";
-import QuantityControlPanel from "../../components/QuantityControlPanel";
+
+import QuantityControlPanel from "@/components/QuantityControlPanel";
 import Price from "../currencyConverter/Price";
+import { setRemoveItemFromCart } from "./cartSlice";
 
 interface CartItemProps {
   cartItem: {

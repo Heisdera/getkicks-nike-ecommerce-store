@@ -1,9 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectBaseCurrency, selectSelectedCurrency } from "./currencySlice";
+import Skeleton from "react-loading-skeleton";
+
 import { useConversionRates } from "@/hooks/useConversionRates";
 import { convertPrice } from "@/utils/helpers";
-import Skeleton from "react-loading-skeleton";
+import { selectBaseCurrency, selectSelectedCurrency } from "./currencySlice";
 
 interface Props {
   className: string;

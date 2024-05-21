@@ -1,10 +1,11 @@
 import React from "react";
-import Products from "../features/products/Products";
-import PageTitle from "../components/PageTitle";
 import { NavLink, useParams } from "react-router-dom";
-import { collections } from "../data/data";
-import { usePagination } from "@/hooks/usePagination";
 import { motion } from "framer-motion";
+
+import Products from "@/features/products/Products";
+import PageTitle from "@/components/PageTitle";
+import { collections } from "@/data/data";
+import { usePagination } from "@/hooks/usePagination";
 
 const ProductsPage: React.FC = () => {
   const { data } = usePagination();

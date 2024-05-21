@@ -1,22 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { HiHeart, HiOutlineHeart } from "react-icons/hi";
+import { HiShoppingBag } from "react-icons/hi2";
+import Pagination from "@mui/material/Pagination";
+import PaginationItem from "@mui/material/PaginationItem";
+import _ from "lodash";
+
+import QuantityControlPanel from "@/components/QuantityControlPanel";
+import { useWindowWidth } from "../../hooks/useWindowWidth.ts";
+import { Product } from "@/utils/types";
+import { usePagination } from "@/hooks/usePagination.ts";
 import { selectCartItems, setAddItemToCart } from "../cart/cartSlice.ts";
 import {
   selectWishlistItems,
   setToggleWishlistItem,
 } from "../wishlist/wishlistSlice.ts";
-import { HiHeart, HiOutlineHeart } from "react-icons/hi";
-import { Product } from "../../utils/types";
-import QuantityControlPanel from "../../components/QuantityControlPanel";
-import _ from "lodash";
-import { useWindowWidth } from "../../hooks/useWindowWidth.ts";
-import ProductsSkeleton from "./ProductsSkeleton.tsx";
-import { usePagination } from "@/hooks/usePagination.ts";
-import Pagination from "@mui/material/Pagination";
-import PaginationItem from "@mui/material/PaginationItem";
-import { HiShoppingBag } from "react-icons/hi2";
 import Price from "../currencyConverter/Price.tsx";
+import ProductsSkeleton from "./ProductsSkeleton.tsx";
 
 interface Props {
   collection: string | undefined;

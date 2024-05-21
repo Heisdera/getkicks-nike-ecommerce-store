@@ -1,6 +1,7 @@
-import { useWindowWidth } from "@/hooks/useWindowWidth";
 import React from "react";
 import Skeleton from "react-loading-skeleton";
+
+import { useWindowWidth } from "@/hooks/useWindowWidth";
 
 const ProductsSkeleton: React.FC = () => {
   let arrayLength = 6;

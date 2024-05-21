@@ -1,5 +1,5 @@
-import { fetchConversionRates } from "../services/fetchConversionRates";
 import { useQuery } from "@tanstack/react-query";
+import { fetchConversionRates } from "../services/fetchConversionRates";
 
 export function useConversionRates(baseCurrency: string) {
   const { isLoading, data, error } = useQuery({

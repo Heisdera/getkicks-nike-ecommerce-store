@@ -1,16 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
-import router from "./Routes/Routes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-
 import { Provider } from "react-redux";
-import Store from "./store/store";
-
-// import { Toaster } from "react-hot-toast";
 import { ToastContainer, Slide } from "react-toastify";
-import "./index.css";
+// import { Toaster } from "react-hot-toast";
+
+import router from "@/Routes/Routes";
+import Store from "@/store/store";
+
+import "@/index.css";
 import "react-toastify/dist/ReactToastify.css";
 import "react-loading-skeleton/dist/skeleton.css";
 

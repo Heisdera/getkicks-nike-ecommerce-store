@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { HiHeart, HiOutlineHeart } from "react-icons/hi";
+
+import QuantityControlPanel from "@/components/QuantityControlPanel";
+import { ProductDetails as ProductDetailsType } from "@/utils/types";
 import { selectCartItems, setAddItemToCart } from "../cart/cartSlice";
-import { ProductDetails as ProductDetailsType } from "../../utils/types";
-import { useSelector } from "react-redux";
 import {
   selectWishlistItems,
   setToggleWishlistItem,
 } from "../wishlist/wishlistSlice";
-import { HiHeart, HiOutlineHeart } from "react-icons/hi";
-import QuantityControlPanel from "../../components/QuantityControlPanel";
 import Price from "../currencyConverter/Price";
 
 interface ProductDetailsProps {

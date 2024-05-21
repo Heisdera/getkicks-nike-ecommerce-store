@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast as toast1 } from "react-hot-toast";
 import { toast as toast2 } from "react-toastify";
-import { RootState } from "../../store/store";
+import { RootState } from "@/store/store";
 
 const initialState: {
   cartState: boolean;

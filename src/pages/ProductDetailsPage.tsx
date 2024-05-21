@@ -1,8 +1,9 @@
 import React from "react";
-import ProductDetails from "../features/products/ProductDetails";
 import { useNavigate } from "react-router-dom";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
-import { useProductDetails } from "../hooks/useProductDetails";
+
+import { useProductDetails } from "@/hooks/useProductDetails";
+import ProductDetails from "@/features/products/ProductDetails";
 import ProductDetailsSkeleton from "@/features/products/ProductDetailsSkeleton";
 
 const ProductDetailsPage: React.FC = () => {
