@@ -69,7 +69,8 @@ const ProductsPage: React.FC = () => {
               : collections[activeCollectionIndex].text
           }
         />
-        <p className="mr-2 space-x-1 text-sm">
+
+        <p className="mb-3 mr-2 space-x-1 text-sm">
           <span className="font-medium text-gray-700">
             {data?.total_results}
           </span>

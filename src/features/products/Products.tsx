@@ -103,7 +103,7 @@ const Products: React.FC<Props> = ({ collection }) => {
               to={`/products/${product.id}`}
               className="grid grid-cols-1 gap-[2px] py-2"
             >
-              <h3 className="text-xs font-medium text-gray-500 min-[360px]:text-sm sm:text-base">
+              <h3 className="text-xs font-medium text-gray-600 min-[360px]:text-sm sm:text-base">
                 {isWideScreen
                   ? handleTruncateProductName(product.name, 34)
                   : isDesktop
@@ -115,7 +115,7 @@ const Products: React.FC<Props> = ({ collection }) => {
                         : handleTruncateProductName(product.name, 19)}
               </h3>
 
-              <p className="text-sm font-semibold text-gray-900 min-[360px]:text-base xl:text-lg">
+              <p className="text-xs font-semibold text-gray-900 min-[360px]:text-base xl:text-lg">
                 {/* €{product.price} */}
                 <Price className="" price={product.price} />
               </p>
@@ -128,7 +128,7 @@ const Products: React.FC<Props> = ({ collection }) => {
               />
             ) : (
               <button
-                className="flex w-full justify-center gap-1.5 rounded-md bg-indigo-500 p-1.5 text-sm text-white hover:bg-indigo-600"
+                className="flex w-full justify-center gap-1.5 rounded-md bg-indigo-500 p-1.5 text-xs text-white hover:bg-indigo-600 min-[360px]:text-sm"
                 type="button"
                 onClick={() => handleAddItemToCart(product)}
               >
