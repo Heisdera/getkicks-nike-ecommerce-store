@@ -46,7 +46,7 @@ const Footer: React.FC = () => {
         <div className="lg:mx-auto">
           <h4 className="cursor-default pb-3 text-sm font-medium">Pages</h4>
           <div className="flex flex-col gap-2 text-xs">
-            <Link to="/products" className="cursor-pointer">
+            <Link to="/collections/nike" className="cursor-pointer">
               Products
             </Link>
             <Link to="/wishlist" className="cursor-pointer">

@@ -1,3 +1,9 @@
+import _ from "lodash";
+
+export function handleTruncateProductName(productName: string, length: number) {
+  return _.truncate(productName, { length: length });
+}
+
 export function currentYear(): number {
   const date = new Date();
   const year = date.getFullYear();

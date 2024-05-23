@@ -5,19 +5,19 @@ import { HiHeart, HiOutlineHeart } from "react-icons/hi";
 import { HiShoppingBag } from "react-icons/hi2";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
-import _ from "lodash";
 
 import QuantityControlPanel from "@/components/QuantityControlPanel";
-import { useWindowWidth } from "../../hooks/useWindowWidth.ts";
+import { useWindowWidth } from "@/hooks/useWindowWidth";
 import { Product } from "@/utils/types";
-import { usePagination } from "@/hooks/usePagination.ts";
-import { selectCartItems, setAddItemToCart } from "../cart/cartSlice.ts";
+import { handleTruncateProductName } from "@/utils/helpers";
+import { usePagination } from "@/hooks/usePagination";
+import { selectCartItems, setAddItemToCart } from "../cart/cartSlice";
 import {
   selectWishlistItems,
   setToggleWishlistItem,
-} from "../wishlist/wishlistSlice.ts";
-import Price from "../currencyConverter/Price.tsx";
-import ProductsSkeleton from "./ProductsSkeleton.tsx";
+} from "../wishlist/wishlistSlice";
+import Price from "../currencyConverter/Price";
+import ProductsSkeleton from "./ProductsSkeleton";
 
 interface Props {
   collection: string | undefined;
@@ -41,10 +41,6 @@ const Products: React.FC<Props> = ({ collection }) => {
     dispatch(setToggleWishlistItem(item));
 
     console.log(item);
-  }
-
-  function handleTruncateProductName(productName: string, length: number) {
-    return _.truncate(productName, { length: length });
   }
 
   if (isLoading) return <ProductsSkeleton />;
@@ -79,8 +75,8 @@ const Products: React.FC<Props> = ({ collection }) => {
               <button
                 type="button"
                 title="Remove from Wishlist"
-                className="absolute right-4 top-4 rounded-md focus:outline-none 
-              focus:ring-2 focus:ring-ring focus:ring-offset-2 lg:right-5 lg:top-5"
+                className="absolute right-4 top-4 rounded-md 
+              focus:outline-none focus:ring-2 focus:ring-offset-2 lg:right-5 lg:top-5"
                 onClick={() => handleToggleWishlistState(product)}
               >
                 <HiHeart
@@ -92,7 +88,7 @@ const Products: React.FC<Props> = ({ collection }) => {
               <button
                 type="button"
                 title="Remove from Wishlist"
-                className="absolute right-4 top-4 rounded-md focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 lg:right-5 lg:top-5"
+                className="absolute right-4 top-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 lg:right-5 lg:top-5"
                 onClick={() => handleToggleWishlistState(product)}
               >
                 <HiOutlineHeart

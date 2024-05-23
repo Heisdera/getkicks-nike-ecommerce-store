@@ -285,7 +285,7 @@ const Navbar: React.FC = () => {
             </div>
 
             {/* Currency */}
-            <div className="lg:ml-8 lg:!flex">
+            <div className="relative lg:ml-8 lg:!flex">
               <FormControl
                 sx={{
                   width: 90,
@@ -309,18 +309,19 @@ const Navbar: React.FC = () => {
                     ".MuiOutlinedInput-notchedOutline": {
                       borderWidth: "0",
                     },
-                    "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "black",
-                    },
                     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                       borderColor: "black",
                     },
+                    "&:focus .Mui-focused": {
+                      borderColor: "black",
+                      display: "block",
+                    },
                     "& .MuiSvgIcon-root": {
-                      color: "black", // Change the color of the dropdown arrow
-                      display: "none", // Hide the arrow by default
+                      color: "black",
+                      display: "none",
 
                       "@media (min-width: 1024px)": {
-                        display: "block", // Show the arrow on desktop
+                        display: "block",
                       },
                     },
                   }}
@@ -355,6 +356,8 @@ const Navbar: React.FC = () => {
                   ))}
                 </Select>
               </FormControl>
+
+              <div className="absolute bottom-[2px] left-0 right-0 mx-auto w-[75%] border-b lg:hidden"></div>
             </div>
 
             {/* Search */}

@@ -4,18 +4,25 @@ import { Link } from "react-router-dom";
 
 const ErrorPage: React.FC = () => {
   const error = useRouteError() as ErrorResponse;
-  console.log(error);
 
   return (
-    <div id="error-page">
-      <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
-      {/* <p>{error.data || error.statusText}</p> */}
-      <p>
-        {error.status} {error.statusText}
+    <div
+      id="error-page"
+      className="flex h-screen flex-col items-center justify-center gap-4"
+    >
+      <h1 className="text-4xl">Oops!</h1>
+      <p className="text-xl text-red-500">
+        Sorry, an unexpected error has occurred.
       </p>
-      <Link to="/" className="underline text-blue-500 hover:no-underline">
-        Go back to Home Page
+      <p className="flex flex-col items-center gap-1">
+        <span>{error.data}</span>
+        <span>{error.statusText}</span>
+      </p>
+      <Link
+        to="/collections/nike"
+        className="text-blue-500 underline hover:no-underline"
+      >
+        &larr; Go back to Home Page
       </Link>
     </div>
   );
