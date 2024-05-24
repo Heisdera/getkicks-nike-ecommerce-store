@@ -53,7 +53,7 @@ const Cart: React.FC = () => {
           <p>Subtotal</p>
           <p>
             {/* €{cartTotalAmount} */}
-            <Price className="" price={cartTotalAmount} />
+            <Price className="font-semibold" price={cartTotalAmount} />
           </p>
         </div>
         <p className="mt-0.5 text-sm text-gray-500">

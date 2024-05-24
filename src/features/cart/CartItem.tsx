@@ -36,12 +36,12 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
 
       <div className="ml-4 flex flex-1 flex-col py-0.5">
         <div>
-          <div className="flex justify-between font-medium">
-            <h3 className="text-gray-600">{cartItem.name}</h3>
+          <div className="flex justify-between">
+            <h3 className="text-gray-600 font-medium">{cartItem.name}</h3>
             <p className="ml-4 text-gray-900">
               {/* €{cartItem.price * cartItem.cartQuantity} */}
               <Price
-                className=""
+                className="font-semibold"
                 price={cartItem.price * cartItem.cartQuantity}
               />
             </p>
