@@ -40,7 +40,7 @@ const ProductsPage: React.FC = () => {
             type="button"
             className={
               ({ isActive }) =>
-                `${isActive ? "rounded-md" : "rounded-md border border-gray-200 transition-colors duration-200 hover:border-black"} relative px-2.5 py-2 text-sm xl:text-base`
+                `${isActive ? "rounded-md" : "rounded-md border border-gray-200 transition-colors duration-200 hover:border-black"} relative px-2.5 py-2 text-[15px] xl:text-base`
               // `${isActive ? "rounded-md" : "rounded-md border border-gray-200 bg-[#f9f9f9] transition-colors duration-200 hover:border-black"} relative px-2.5 py-2 text-sm xl:text-base`
             }
           >

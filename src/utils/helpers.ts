@@ -28,8 +28,13 @@ export function pathVariant(customDelay: number) {
 
 export function convertPrice(
   price: number,
+  // rates: {
+  //   conversion_rates: {
+  //     [key: string]: number;
+  //   };
+  // },
   rates: {
-    conversion_rates: {
+    rates: {
       [key: string]: number;
     };
   },
@@ -41,7 +46,7 @@ export function convertPrice(
     maximumFractionDigits: 0,
   });
 
-  const conversionRate = rates.conversion_rates[selectedCurrency];
+  const conversionRate = rates.rates[selectedCurrency];
 
   if (rates && conversionRate) {
     return currency.format(price * conversionRate);

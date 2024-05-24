@@ -6,10 +6,10 @@ const ITEMSPERPAGE = 40;
 export function usePagination() {
   const location = useLocation();
   const query = new URLSearchParams(location.search);
-  const page = Number(query.get("page")) || 1;
+  const pageNumber = Number(query.get("page")) || 1;
   const { collection } = useParams();
 
-  const { isLoading, data, error } = useProducts(collection, page);
+  const { isLoading, data, error } = useProducts(collection, pageNumber);
 
   const totalPages = Math.ceil(data?.total_results / ITEMSPERPAGE) || 0;
 
@@ -28,7 +28,7 @@ export function usePagination() {
     isLoading,
     error,
     data,
-    page,
+    pageNumber,
     totalPages,
     // currentPage,
     // prevPage,

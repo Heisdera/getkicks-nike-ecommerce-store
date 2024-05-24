@@ -26,7 +26,7 @@ interface Props {
 const Products: React.FC<Props> = ({ collection }) => {
   const { isSmallScreen, isMobile, isTablet, isDesktop, isWideScreen } =
     useWindowWidth();
-  const { isLoading, data, error, page, totalPages } = usePagination();
+  const { isLoading, data, error, pageNumber, totalPages } = usePagination();
   const dispatch = useDispatch();
   const wishlistItems = useSelector(selectWishlistItems);
   const cartItems = useSelector(selectCartItems);
@@ -144,7 +144,7 @@ const Products: React.FC<Props> = ({ collection }) => {
         <Pagination
           shape="rounded"
           size={`${isSmallScreen ? "small" : "medium"}`}
-          page={page}
+          page={pageNumber}
           count={totalPages}
           renderItem={(item) => (
             <PaginationItem

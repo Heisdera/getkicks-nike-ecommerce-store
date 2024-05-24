@@ -8,12 +8,12 @@ const options = {
   },
 };
 
-export async function fetchProductsData(
+export async function fetchProducts(
   collection: string | undefined,
-  page: number,
+  pageNumber: number,
 ) {
   const response = await fetch(
-    `${BaseUrl}/${collection}?page=${page}`,
+    `${BaseUrl}/${collection}?page=${pageNumber}`,
     options,
   );
   const { products, total_results } = await response.json();
