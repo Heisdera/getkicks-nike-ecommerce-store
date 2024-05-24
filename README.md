@@ -18,15 +18,18 @@ This project utilizes the following technologies and libraries:
   - [Vite](https://vitejs.dev/)
   - [React](https://reactjs.org/)
   - [TypeScript](https://www.typescriptlang.org/)
+  - [Tailwindcss](https://tailwindcss.com/)
+  - [Material UI](https://mui.com/material-ui/all-components/)
   - [React Router](https://reactrouter.com/)
   - [React Query](https://react-query.tanstack.com/)
   - [Redux](https://redux.js.org/)
   - [React Toastify](https://fkhadra.github.io/react-toastify/)
+  - [Framer Motion](https://www.framer.com/motion/)
   - [Lodash](https://lodash.com/)
-  - Additional npm packages for various functionalities
 
 - **Backend**:
-  - Node.js API to fetch data from a scraped source
+  - Node.js to scrape data from [Wethenew Nike Store](https://wethenew.com/en/collections/nike).
+  - Rapid API to fetch scraped data using different endpoints I created.
 
 ## Features
 
