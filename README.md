@@ -1,30 +1,52 @@
-# React + TypeScript + Vite
+# GetKicks Nike E-Commerce Store
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the GetKicks Nike E-Commerce Store! This project is a fully functional e-commerce frontend application built with modern web development technologies. It showcases products, handles user interactions such as adding product to cart or wishlist and provides a seamless shopping experience.
 
-Currently, two official plugins are available:
+[GetKicks.vercel.app](https://getkicks-nike-sneakers-store.vercel.app/collections/nike)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
 
-## Expanding the ESLint configuration
+- [Technologies Used](#technologies-used)
+- [Features](#features)
+- [Contact](#contact)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Technologies Used
 
-- Configure the top-level `parserOptions` property like this:
+This project utilizes the following technologies and libraries:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- **Frontend**:
+  - [Vite](https://vitejs.dev/)
+  - [React](https://reactjs.org/)
+  - [TypeScript](https://www.typescriptlang.org/)
+  - [React Router](https://reactrouter.com/)
+  - [React Query](https://react-query.tanstack.com/)
+  - [Redux](https://redux.js.org/)
+  - [React Toastify](https://fkhadra.github.io/react-toastify/)
+  - [Lodash](https://lodash.com/)
+  - Additional npm packages for various functionalities
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- **Backend**:
+  - Node.js API to fetch data from a scraped source
+
+## Features
+
+- **Product Listing**: View a wide range of Nike products with detailed information.
+- **Product Collections**: Filter products based on Nike collections.
+- **Product Details**: View detailed information about each product.
+- **Shopping Cart**: Add products to the shopping cart and manage cart items.
+- **Wishlist Products**: Add products to wishlist for future purchases.
+- **Responsive Design**: Optimized for both desktop and mobile devices.
+- **Notifications**: Real-time notifications using Toastify.
+
+- **User Authentication (COMING SOON)**: User login and registration functionalities.
+- **Check-out (COMING SOON)**: User payment process and estimated delivery time functionalities.
+
+## Contact
+
+For any inquiries or feedback, please contact:
+
+- **Raphael Wisdom Chidera**
+- **Email: raphaelwisdom1@gmail.com**
+
+
+Thank you for visiting the GetKicks Nike E-Commerce Store repository!
