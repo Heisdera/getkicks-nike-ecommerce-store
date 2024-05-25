@@ -6,7 +6,7 @@ export function useProducts(
   pageNumber: number,
 ) {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["collection", collection, `page ${pageNumber}`],
+    queryKey: [`collection ${collection}`, `page ${pageNumber}`],
     queryFn: () => fetchProducts(collection, pageNumber),
   });
 
