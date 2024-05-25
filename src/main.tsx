@@ -37,9 +37,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           draggablePercent={30}
           closeButton={false}
         />
-        <RouterProvider router={router}>
-          <Analytics />
-        </RouterProvider>
+        <RouterProvider router={router} />
+        <Analytics />
       </QueryClientProvider>
     </Provider>
   </React.StrictMode>,
