@@ -6,6 +6,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Provider } from "react-redux";
 import { ToastContainer, Slide } from "react-toastify";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react"
 // import { Toaster } from "react-hot-toast";
 
 import router from "@/Routes/Routes";
@@ -39,6 +40,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         />
         <RouterProvider router={router} />
         <Analytics />
+        <SpeedInsights />
       </QueryClientProvider>
     </Provider>
   </React.StrictMode>
