@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Provider } from "react-redux";
 import { ToastContainer, Slide } from "react-toastify";
+import { Analytics } from "@vercel/analytics/react"
 // import { Toaster } from "react-hot-toast";
 
 import router from "@/Routes/Routes";
@@ -19,7 +20,7 @@ const queryClient = new QueryClient({
     queries: {
       staleTime: 0,
     },
-  },
+  },5
 });
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
@@ -36,7 +37,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           draggablePercent={30}
           closeButton={false}
         />
-        <RouterProvider router={router} />
+        <RouterProvider router={router}>
+          <Analytics />
+        </RouterProvider>
       </QueryClientProvider>
     </Provider>
   </React.StrictMode>,
