@@ -20,7 +20,7 @@ const queryClient = new QueryClient({
     queries: {
       staleTime: 0,
     },
-  },5
+  },
 });
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
