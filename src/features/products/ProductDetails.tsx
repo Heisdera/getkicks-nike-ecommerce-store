@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { HiHeart, HiOutlineHeart } from "react-icons/hi";
+import { motion } from "framer-motion"
 
 import QuantityControlPanel from "@/components/QuantityControlPanel";
 import { ProductDetails as ProductDetailsType } from "@/utils/types";
@@ -59,7 +60,19 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productDetails }) => {
       <div className="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
         <div className="grid grid-cols-3 gap-3 md:gap-4">
           <div className="col-span-3 rounded-md bg-[#f6f6f6] drop-shadow">
-            <img
+            <motion.img
+              initial={{
+                opacity: 0,
+                x: "-70%",
+              }}
+              animate={{
+                opacity: 1,
+                x: 0,
+              }}
+              transition={{
+                duration: 0.5
+              }}
+              key={filteredImages[displayImageIndex]}
               className="w-full"
               src={filteredImages[displayImageIndex]}
               alt={productDetails.name}

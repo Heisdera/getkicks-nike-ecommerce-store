@@ -1,10 +1,17 @@
-import AppLayout from "./components/AppLayout";
-import { usePrefetchData } from "./hooks/usePrefetchData";
+import { ScrollRestoration } from "react-router-dom";
+import AppLayout from "@/components/AppLayout";
+import { usePrefetchData } from "@/hooks/usePrefetchData";
 
 function App() {
   usePrefetchData()
 
-  return <AppLayout />;
+  return (
+    <>
+      <ScrollRestoration />
+
+      <AppLayout />
+    </>
+  );
 }
 
 export default App;

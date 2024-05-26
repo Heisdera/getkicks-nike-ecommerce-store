@@ -3,8 +3,12 @@ import Skeleton from "react-loading-skeleton";
 
 const ProductDetailsSkeleton: React.FC = () => {
   return (
-    <section className="bg-white py-8 antialiased md:py-16">
+    <section className="bg-white py-4 antialiased md:py-16">
       <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
+        <div className="flex align-left w-20 flex-col mb-2 mr-1">
+          <Skeleton className="h-6" />
+        </div>
+
         <div className="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
           <div>
             <Skeleton className="mb-1 h-[270px] rounded-md md:mb-2" />
