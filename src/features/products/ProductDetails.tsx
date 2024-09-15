@@ -39,8 +39,10 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ productDetails }) => {
   const wishlistItems = useSelector(selectWishlistItems);
   const cartItems = useSelector(selectCartItems);
 
+  console.log({ productDetails })
+
   const filteredImages = productDetails.images.filter(
-    (image) => image.trim() !== "",
+    (image) => image?.trim() !== "" && image !== null
   );
 
   function handleAddItemToCart(item: ProductDetailsType) {
